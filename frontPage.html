@@ -36,10 +36,10 @@
         <div class="row">
           <div class="col-md-8 mx-auto"> <!-- horizontal center -->
             <h2 class="section-heading">Explore nearby popular breweries, and beers!</h2>
-            <p>"Lets put something snazzy right here...snazzy snazzy snazzy!</p>
+            <!--<p>"Lets put something snazzy right here...snazzy snazzy snazzy!</p> -->
           </div>
         </div>
-        <div class="row">
+        <div class="row" id="bottom">
           <!--
           <div class="col-md-4">
             <div class="dropdown">
@@ -52,10 +52,10 @@
                 </div>
             </div> 
           </div> -->
-            <div class="col-md-4">
+            <div class="col-md-4 mx-auto">
               <div id="controlPanel">
                 <div id="searchType">
-                  <a href data-type="search" class="selected"> Enter your location </a>
+                  <a href data-type="search" class="selected"> </a>
                 </div>
                 <div id="searchForms">
                   <form action="#" method="get" id="searchForm">
@@ -71,7 +71,7 @@
                         </tr>
                         <tr>
                           <td>
-                            <label for="radius">Radius: </label>
+                            <label for="radius">Radius:</label>
                           </td>
                           <td>
                             <select id="radius" name="radius">
@@ -83,7 +83,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <input type="submit" id="submitButton" value="Find Breweries!">
+                    <input type="submit" class="btn" id="submitButton" value="Find Breweries!">
                   </form>
                </div>
             </div>
