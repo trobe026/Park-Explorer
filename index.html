@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+ <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>PUBlic</title>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -16,9 +17,11 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
+
     <!-- Custom fonts -->
     <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/vendor/simple-line-icons/css/simple-line-icons.css">
+
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
@@ -30,28 +33,67 @@
 
   <body id="page-top">
 
-    <header class="masthead">
-      <div class="container h-100"> <!-- height: 100px -->
-        <div class="row h-100"> <!-- height: 100px -->
-          <div class="col-lg-7 my-auto"> <!-- my-auto vertical center -->
-            <div class="header-content mx-auto"> <!-- mx-auto horizontal center -->
-              <h1 class="mb-5"> <!-- margin bottom -->Do you love Beer and Public Transit? (obviously we can change this. ha) You've come to the right place!</h1>
-              <a href="frontPage.html" class="btn btn-outline btn-xl">Lets get Started!</a>
-            </div>
-          </div>
-          <div class="col-lg-5 my-auto"> <!-- vertical center -->
-            <div class="screen">
-              <img src="assets/img/beer.jpg" class="img-fluid" alt="">
-            </div>
-              <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-              </div>
+    <section class="frontPage bg-primary text-center" id="frontPage">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mx-auto"> <!-- horizontal center -->
+            <h2 class="section-heading">Explore nearby popular breweries, and beers!</h2>
+            <!--<p>"Lets put something snazzy right here...snazzy snazzy snazzy!</p> -->
           </div>
         </div>
-     </div>
-    </header>
-<script type="text/javascript" src="./assets/javascript/app.js"></script>
+        <div class="row" id="bottom">
+          <!--
+          <div class="col-md-4">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose your city
+              </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Austin</a>
+                  <a class="dropdown-item" href="#">Portland</a>
+                  <a class="dropdown-item" href="#">Seattle</a>
+                </div>
+            </div> 
+          </div> -->
+            <div class="col-md-4 mx-auto">
+              <div id="controlPanel">
+                <div id="searchType">
+                  <a href data-type="search" class="selected"> </a>
+                </div>
+                <div id="searchForms">
+                  <form action="#" method="get" id="searchForm">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <label for="address"> Search: </label>
+                          </td>
+                          <td>
+                            <input type="text" name"address" id="address" class="defaultVal" value="enter your zipcode">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="radius">Radius:</label>
+                          </td>
+                          <td>
+                            <select id="radius" name="radius">
+                              <option value="5">5 miles</option>
+                              <option value="10">10 miles</option>
+                              <option value="15">15 miles</option>
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <input type="submit" class="btn" id="submitButton" value="Find Breweries!">
+                  </form>
+               </div>
+            </div>
+        </div> <!-- close row -->
+      </div> <!-- close container -->          
+    </section>
+
+<script type="text/javascript" src="./assets/javascript/app.css"></script>
 
 </body>
 </html>
-
