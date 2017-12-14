@@ -1,3 +1,7 @@
+// declaring global variables
+var zip
+var radius
+
 var settings = {
   "async": true,
   "crossDomain": true,
@@ -19,6 +23,12 @@ $.ajax(settings).done(function (response) {
 
 
 //Search on-click reveals the map and column with information.
+$('#submitButton').on('click', function() {
+  var zip = $('#address').val().trim();
+  var radius = $('#radius').val().trim();
+  console.log('Zip: ' + zip);
+  console.log('Radius: ' + radius);
+})
 
 //Search result gets passed through NPS/Instagram APIs.
 
