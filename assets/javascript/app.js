@@ -1,7 +1,7 @@
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://developer.nps.gov/api/v1/campgrounds?%20=&api_key=FnU7EWa9B2RlDnwnu33mMpYJZuWYhXAbYfGxkFh8",
+  "url": "https://developer.nps.gov/api/v1/campgrounds?limit=10%20=&api_key=FnU7EWa9B2RlDnwnu33mMpYJZuWYhXAbYfGxkFh8",
   "method": "GET",
   "headers": {
     "authorization": "Basic Og==",
@@ -9,10 +9,37 @@ var settings = {
     "postman-token": "509a7a9e-dd99-d214-70d9-793c94ad5033"
   }
 }
-
 $.ajax(settings).done(function (response) {
+
+  // var results = response.
   console.log(response);
 });
+
+
+//Search on-click reveals the map and column with information.
+
+//Search result gets passed through NPS/Instagram APIs.
+
+// Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
+
+//A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
+
+//When a marker is clicked withing Google Maps, it reveals 6 photos within that infoWindow.
+
+//When a photo is clicked, we are taken to that photos link.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Map Options
