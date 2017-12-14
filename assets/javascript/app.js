@@ -196,40 +196,37 @@ $('#submitButton').on('click', function() {
       //       });
       //   }
     // } 
-  } 
-// declaring global variables
-var zip
-var radius
+  })
 
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://developer.nps.gov/api/v1/parks?limit=10%20=&api_key=FnU7EWa9B2RlDnwnu33mMpYJZuWYhXAbYfGxkFh8",
-  "method": "GET",
-  "headers": {
-    "authorization": "Basic Og==",
-    "cache-control": "no-cache",
-    "postman-token": "509a7a9e-dd99-d214-70d9-793c94ad5033"
-  }
-}
-$.ajax(settings).done(function (response) {
-  var results = response.data;
-  $.each(results, function(index, value){
-          console.log(results[index].states)
-          })
-  console.log(results);
-});
+
 
 
 //Search on-click reveals the map and column with information.
 $('#submitButton').on('click', function() {
-  var zip = $('#address').val().trim();
-  var radius = $('#radius').val().trim();
-  console.log('Zip: ' + zip);
-  console.log('Radius: ' + radius);
+  state = $('#state').val().trim();
+  radius = $('#radius').val().trim();
 
 
  //Search result gets passed through NPS/Instagram APIs.
+ var settings = {
+   "async": true,
+   "crossDomain": true,
+   "url": "https://developer.nps.gov/api/v1/parks?stateCode=" + state + "&limit=10%20=&api_key=FnU7EWa9B2RlDnwnu33mMpYJZuWYhXAbYfGxkFh8",
+   "method": "GET",
+   "headers": {
+     "authorization": "Basic Og==",
+     "cache-control": "no-cache",
+     "postman-token": "509a7a9e-dd99-d214-70d9-793c94ad5033"
+   }
+ }
+ $.ajax(settings).done(function (response) {
+   var results = response.data;
+   $.each(results, function(index, value){
+           console.log(results[index].states)
+           })
+   console.log(results);
+ });
+
 
     // Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
     //Map Options
