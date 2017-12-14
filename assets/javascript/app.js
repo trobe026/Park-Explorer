@@ -14,9 +14,11 @@ var settings = {
   }
 }
 $.ajax(settings).done(function (response) {
-
-  // var results = response.
-  console.log(response);
+  var results = response.data;
+  $.each(results, function(index, value){
+          
+          })
+  console.log(results);
 });
 
 
