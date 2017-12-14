@@ -1,3 +1,4 @@
+
 // declaring global variables
 var state;
 var radius;
@@ -85,3 +86,4 @@ $('#submitButton').on('click', function() {
 
     //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
 });
+
