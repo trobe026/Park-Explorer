@@ -22,6 +22,13 @@ $(window).on('load', function(){
         var state = $('#state').val().trim();
         initMap(state);
 
+        $('#map').css({'display': 'inline-block',
+            'width': '100%',
+            'height': '400px',
+            'border': 'solid',
+            'margin-top': '20px'
+            });
+
         //Search result gets passed through NPS/Instagram APIs.
         var settings = {
             "async": true,
