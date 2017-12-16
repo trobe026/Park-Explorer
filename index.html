@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
@@ -44,7 +45,7 @@
                   <a class="dropdown-item" href="#">Portland</a>
                   <a class="dropdown-item" href="#">Seattle</a>
                 </div>
-            </div> 
+            </div>
           </div> -->
                 <div class="col-md-4 mx-auto">
                     <div id="controlPanel">
@@ -125,6 +126,8 @@
                 <!-- close row -->
             </div>
             <!-- close container -->
+            <input id='userInput' type="text" name="" value="Enter a thing:">
+            <button id='api' type="submit" name="button">Submit</button>
             <div class="row" id="searchResults">
                 <div class="col-md-6 mx-auto" id="map">
                 </div>
@@ -133,20 +136,14 @@
             </div>
 
         </div> <!-- close row -->
-      </div> <!-- close container -->  
-      <div class="row" id="searchResults">
-        <div class="col-md-4 mx-auto" id="infoColumn">
-          
-        </div>
-        <div class="col-md-8 mx-auto" id="googleMap">
-          
-        </div>
-      </div>        
+      </div> <!-- close container -->
 
     </section>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XbBnnAkDpIGfPce9gn1AxIrzpquR54&callback=initMap" type="text/javascript"></script>
     <script type="text/javascript" src="./assets/javascript/app.js"></script>
     <script type="text/javascript" src="./assets/javascript/gmaps.js"></script>
+    <script type="text/javascript" src="./assets/javascript/flickr.js"></script>
+
 </body>
 
 </html>

@@ -25,23 +25,6 @@ $.ajax({
 });
 
 
-//Search on-click reveals the map and column with information.
-$('#submitButton').on('click', function() {
-    var state = $('#state').val().trim();
-    var radius = $('#radius').val().trim();
-    initMap(state);
-
-})
-
-
-
-
-//Search on-click reveals the map and column with information.
-$('#submitButton').on('click', function() {
-    state = $('#state').val().trim();
-    radius = $('#radius').val().trim();
-
-
     //Search result gets passed through NPS/Instagram APIs.
     var settings = {
         "async": true,
@@ -85,5 +68,3 @@ $('#submitButton').on('click', function() {
     //Map Options
 
     //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
-});
-
