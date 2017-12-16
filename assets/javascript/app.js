@@ -54,19 +54,31 @@ $('#submitButton').on('click', function() {
             "postman-token": "509a7a9e-dd99-d214-70d9-793c94ad5033"
         }
     }
+
+    //AJAX response for NPS and Instagram
     $.ajax(settings).done(function(response) {
+
+        //pulled variables from National Park Service website
         var results = response.data;
         var latitude
         var longitude
+        var locationName
+
         $.each(results, function(index, value) {
+            //Latitude variable grabber
+
           var latLong = results[index].latLong
-          // slice the string to break out latLong into two values
-          // function getLatLong(index, value) {
+
+          // Slice the string to break out latLong into two values.
+
             latitude = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
             longitude = latLong.slice(latLong.lastIndexOf(':') +1);
             console.log(latitude);
             console.log(longitude);
-          // }
+            //Get the location name 
+            locationName = results[index].fullName;
+            console.log(locationName);
+
           // add markers from results
             var currentMarker = [{
                     coords: { lat: latitude, lng: longitude},

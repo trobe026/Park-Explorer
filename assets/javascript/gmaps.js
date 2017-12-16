@@ -1,7 +1,7 @@
 var initMap = function() {
     var options = {
         center: { lat: 45.5231, lng: -122.6765 },
-        zoom: 8
+        zoom: 4
     };
 
     var map = new google.maps.Map(
@@ -21,9 +21,9 @@ var initMap = function() {
 
     // });
 
-    // var infoWindow = new google.maps.InfoWindow({
-    //  content: '<h1> Portland, OR </h1>'
-    // });
+    var infoWindow = new google.maps.InfoWindow({
+     content: '<h1> Portland, OR </h1>'
+    });
 
     // marker.addListener('click', function(){
     //  infoWindow.open(map,marker);
@@ -53,21 +53,21 @@ var initMap = function() {
         addMarker(markers[i]);
     };
 
-    // addMarker({
-    //  coords:{lat:45.5231, lng: -122.6765},
-    //  iconImage: '',
-    //  content: '<h1>Portland </h1>'
-    // });
-    // addMarker({
-    //  coords:{lat:44.9429, lng: -123.0351},
-    //  iconImage: '',
-    //  content: '<h1>Salem </h1>'
-    // });
-    // addMarker({
-    //  coords:{lat:45.7054, lng: -121.5215},
-    //  iconImage:'',
-    //  content: '<h1>Hood River </h1>'
-    // });
+    addMarker({
+     coords:{lat:45.5231, lng: -122.6765},
+     iconImage: '',
+     content: '<h1>Portland </h1>'
+    });
+    addMarker({
+     coords:{lat:44.9429, lng: -123.0351},
+     iconImage: '',
+     content: '<h1>Salem </h1>'
+    });
+    addMarker({
+     coords:{lat:45.7054, lng: -121.5215},
+     iconImage:'',
+     content: '<h1>Hood River </h1>'
+    });
 
     // function addMarker(props) {
 
