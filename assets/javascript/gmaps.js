@@ -1,7 +1,33 @@
+
+
+function addMarker(props) {
+
+            marker = new google.maps.Marker({
+                position: props.coords,
+                map:map
+                // icon:props.iconImage
+            });
+
+            // for (var i = 0; i < markers.length; i++) {
+            // //add markers
+            // addMarker(markers[i]);
+            // }
+            if (props.content) {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: props.content
+                });
+
+
+                marker.addListener('click', function() {
+                    infoWindow.open(map, marker);
+                });
+            };
+        }
+
 var initMap = function() {
     var options = {
         center: { lat: 45.5231, lng: -122.6765 },
-        zoom: 8
+        zoom: 6
     };
 
     var map = new google.maps.Map(
@@ -9,12 +35,16 @@ var initMap = function() {
         options
     );
     //Listen for click on map
+    // function mapMarkers(){};
 
-    google.maps.event.addListener(map, 'click',
-        function(event) {
-            //add marker on click
-            addMarker({ coords: event.latLng });
-        });
+    
+        
+    
+    // google.maps.event.addListener(map, 'click',
+    //     function(event) {
+    //         //add marker on click
+    //         addMarker({ coords: event.latLng });
+    //     });
     // var marker = new google.maps.Marker({
     //  position: {lat:45.5231, lng: -122.6765},
     //    map:map
@@ -48,10 +78,7 @@ var initMap = function() {
     //     }
     // ];
     //loop through markers
-    for (var i = 0; i < markers.length; i++) {
-        //add markers
-        addMarker(markers[i]);
-    };
+    
 
     // addMarker({
     //  coords:{lat:45.5231, lng: -122.6765},
@@ -69,29 +96,5 @@ var initMap = function() {
     //  content: '<h1>Hood River </h1>'
     // });
 
-    // function addMarker(props) {
-
-    //     var marker = new google.maps.Marker({
-    //         position: props.coords,
-    //         map: map,
-    //         // icon:props.iconImage
-    //     });
-
-    //     //Displays Icon Image if available
-    //     if (props.iconImage) {
-    //         //sets icon image
-    //         marker.setIcon(props.iconImage);
-    //     };
-
-    //     if (props.content) {
-    //         var infoWindow = new google.maps.InfoWindow({
-    //             content: props.content
-    //         });
-
-
-    //         marker.addListener('click', function() {
-    //             infoWindow.open(map, marker);
-    //         });
-    //     };
-    // };
-}
+    
+};
