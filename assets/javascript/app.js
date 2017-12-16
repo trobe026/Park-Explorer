@@ -89,3 +89,4 @@ $(window).on('load', function(){
     };
     getParksInfo();
 });
+
