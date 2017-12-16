@@ -4,11 +4,14 @@ function addMarker(props) {
 
             marker = new google.maps.Marker({
                 position: props.coords,
-                map: map,
+                map:map
                 // icon:props.iconImage
             });
 
-
+            // for (var i = 0; i < markers.length; i++) {
+            // //add markers
+            // addMarker(markers[i]);
+            // }
             if (props.content) {
                 var infoWindow = new google.maps.InfoWindow({
                     content: props.content
@@ -35,9 +38,7 @@ var initMap = function() {
     // function mapMarkers(){};
 
     
-        // for (var i = 0; i < markers.length; i++) {
-        //     //add markers
-        //     addMarker(markers[i]);
+        
     
     // google.maps.event.addListener(map, 'click',
     //     function(event) {

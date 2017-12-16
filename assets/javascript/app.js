@@ -8,12 +8,6 @@ var markers = [];
 
 $(window).on('load', function(){
 
-
-
-
-
-
-
  function getParksInfo(){
 
 
@@ -69,19 +63,25 @@ $(window).on('load', function(){
             //   add markers/ from results
                 var currentMarker = {
                         coords: { lat: latitude, lng: longitude},
-                        map:map,
+                        
                         content: '<h1>' + locationName +  '</h1>'
                     };
-                addMarker(currentMarker);
+                
                 markers.push(currentMarker);
                 console.log(markers);
+
+                for (var i = 0; i < markers.length; i++) {
+            //add markers
+                addMarker(markers[i]);
+                }
+                // addMarker(currentMarker);
             });
 
             // console.log(results);
         });
         // Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
         //Map Options
-        initMap();
+        initMap(addMarker);
 
 
         //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
