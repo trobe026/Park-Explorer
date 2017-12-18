@@ -1,17 +1,28 @@
 
 
-function addMarker(props) {
+var addMarker = function(props) {
 
-            marker = new google.maps.Marker({
-                position: props.coords,
-                map:map
-                // icon:props.iconImage
-            });
+             var options = {
+            center: { lat: 45.5231, lng: -122.6765 },
+            zoom: 6
+             };
+            
+            for (var i = 0; i < markers.length; i++) {
 
-            // for (var i = 0; i < markers.length; i++) {
-            // //add markers
-            // addMarker(markers[i]);
-            // }
+                    var marker = new google.maps.Marker({
+                    position: props.coords,
+                    map:map
+                
+                });
+            var map = new google.maps.Map(document.getElementById("map"), options);
+            }
+        
+
+            
+        
+
+
+            
             if (props.content) {
                 var infoWindow = new google.maps.InfoWindow({
                     content: props.content
@@ -21,8 +32,10 @@ function addMarker(props) {
                 marker.addListener('click', function() {
                     infoWindow.open(map, marker);
                 });
+            
             };
-        }
+       marker.setMap(map)
+    }
 
 var initMap = function() {
     var options = {
@@ -37,8 +50,7 @@ var initMap = function() {
     //Listen for click on map
     // function mapMarkers(){};
 
-    
-        
+
     
     // google.maps.event.addListener(map, 'click',
     //     function(event) {
