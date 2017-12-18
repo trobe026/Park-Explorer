@@ -8,7 +8,7 @@ $( window ).on('load', function() {
     // var url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyA_jSC4gq080qjSP7akFLd5iELPh0IESfE";
     // var queryURL = "http://api.brewerydb.com/v2/?origin=*&key=6ace3c1403b84fb6ad1b906d575b5fa9";
     var input = $('#userInput').val();
-    var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + input;
+    var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + locationName;
 
     $.ajax({
       url: url,
