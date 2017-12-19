@@ -8,8 +8,6 @@ var markers = [];
 
 $(window).on('load', function(){
 
- function getParksInfo(){
-
     //Search on-click reveals the map and column with information.
     $('#submitButton').on('click', function() {
         var state = $('#state').val().trim();
@@ -69,14 +67,15 @@ $(window).on('load', function(){
                 markers.push(currentMarker);
                 
 
-            //     for (var i = 0; i < markers.length; i++) {
-            // //add markers
-                addMarker(currentMarker);
-            //     }
+        
+            //add markers
+                
+                
                 
             });
-
-          
+            // for (var i = 0; i < markers.length; i++) {}
+          initMap();
+          addMarker(markers);
         });
         // Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
         //Map Options
@@ -85,8 +84,6 @@ $(window).on('load', function(){
 
         //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
         });
-    };
-    getParksInfo();
-    initMap();
+    
 });
 

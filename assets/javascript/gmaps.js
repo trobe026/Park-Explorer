@@ -1,6 +1,20 @@
 
 
-var addMarker = function(props) {
+
+
+var initMap = function() {
+    var options = {
+        center: { lat: 45.5231, lng: -122.6765 },
+        zoom: 4
+    };
+    map = new google.maps.Map(
+        document.getElementById('map'),
+        options
+    );
+
+}
+
+   var addMarker = function(markers) {
 
              var options = {
             center: { lat: 45.5231, lng: -122.6765 },
@@ -8,24 +22,17 @@ var addMarker = function(props) {
              };
             
             for (var i = 0; i < markers.length; i++) {
-
-                    var marker = new google.maps.Marker({
-                    position: props.coords,
-                    map:map
                 
+                new google.maps.Marker({
+                    position: markers[i].coords,
+                    map:map
                 });
-            var map = new google.maps.Map(document.getElementById("map"), options);
             }
-        
 
             
-        
-
-
-            
-            if (props.content) {
+            if (markers.content) {
                 var infoWindow = new google.maps.InfoWindow({
-                    content: props.content
+                    content: markers[i].content
                 });
 
 
@@ -34,20 +41,8 @@ var addMarker = function(props) {
                 });
             
             };
-       marker.setMap(map)
-    }
-
-var initMap = function() {
-    var options = {
-        center: { lat: 45.5231, lng: -122.6765 },
-        zoom: 6
-    };
-
-    var map = new google.maps.Map(
-        document.getElementById('map'),
-        options
-    );
-    //Listen for click on map
+       // marker.setMap(map)
+    } //Listen for click on map
     // function mapMarkers(){};
 
 
@@ -109,4 +104,4 @@ var initMap = function() {
     // });
 
     
-};
+
