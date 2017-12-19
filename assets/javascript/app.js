@@ -8,8 +8,6 @@ var markers = [];
 
 $(window).on('load', function(){
 
- function getParksInfo(){
-
     //Search on-click reveals the map and column with information.
     $('#submitButton').on('click', function() {
         var state = $('#state').val().trim();
@@ -49,9 +47,24 @@ $(window).on('load', function(){
 
               var latLong = results[index].latLong
 
-                //Get the location name 
+                //Get the location name
                 locationName = results[index].fullName;
                 console.log(locationName);
+                // FLICKR API LOGIC
+                var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + locationName;
+
+                $.ajax({
+                  url: url,
+                  method: "GET",
+                  dataType: 'jsonp'
+                })
+                .done(function(response) {
+                    console.log("test");
+                  })
+                .fail(function(error) {
+                  console.log(error);
+                })
+              console.log(locationName);
 
                 // Slice the string to break out latLong into two values.
                 latitude = parseInt(latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(',')));
@@ -64,29 +77,26 @@ $(window).on('load', function(){
                         coords: { lat: latitude, lng: longitude},
                         content: '<h1>' + locationName +  '</h1>'
                     };
-                
+
             // Push the markers into the array
                 markers.push(currentMarker);
+      
+            //add markers
                 
-
-            //     for (var i = 0; i < markers.length; i++) {
-            // //add markers
-                addMarker(currentMarker);
-            //     }
+                
                 
             });
+            // for (var i = 0; i < markers.length; i++) {}
+          initMap();
+          addMarker(markers);
 
-          
         });
         // Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
         //Map Options
-        
+
 
 
         //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
         });
-    };
-    getParksInfo();
-    initMap();
+    
 });
-
