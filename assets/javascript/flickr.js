@@ -1,7 +1,7 @@
 $( window ).on('load', function() {
 
   $('#api').on("click", function() {
-    $('#infoColumn').html('');
+    $('#images').html('');
     console.log("test");
     var input = $('#userInput').val();
     // var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + locationName;
@@ -23,10 +23,10 @@ $( window ).on('load', function() {
 
 function jsonpcallback(response) {
   console.log(response)
-  $('#infoColumn').html('')
+  $('#images').html('')
   for (var i = 0; i < 15; i++) {
-    $('#infoColumn').html()
-    $('#infoColumn').append("<img class='flickrImg' src=" + response.items[i].media.m + ">");
+    $('#images').html()
+    $('#images').append("<img class='flickrImg' src=" + response.items[i].media.m + ">");
     $(".flickrImg").wrap('<a target="_blank" href=' + response.items[i].link + '></a>');
   }
 }
