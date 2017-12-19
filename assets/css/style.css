@@ -35,6 +35,8 @@ h2 {
 
 .flickrImg{
   float: left;
+  margin: 2px;
+  border:solid;
 }
 
 #infoColumn{
