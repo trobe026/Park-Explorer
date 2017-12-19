@@ -31,13 +31,24 @@ var addMarker = function(markers) {
 
            (function(marker, i) {
 
-                    // add click event
+                    marker.addListener('mouseover', function() {
+                            infoWindow.setContent(marker.content);
+                            infoWindow.open(map, marker);
+                        });
+                        // add click event
                     google.maps.event.addListener(marker, 'click', function() {
                         infoWindow.setContent(marker.content);
                         infoWindow.open(map, marker);
 
                         var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + markers[i].flickrImg;
                         console.log(markers[i].flickrImg);
+
+                        
+
+                        // assuming you also want to hide the infowindow when user mouses-out
+                        marker.addListener('mouseout', function() {
+                            infoWindow.close();
+                        });
 
                         $.ajax({
                           url: url,
