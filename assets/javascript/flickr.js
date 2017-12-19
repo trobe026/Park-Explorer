@@ -24,6 +24,6 @@ $( window ).on('load', function() {
 function jsonpcallback(response) {
   $('#infoColumn').html('')
   for (var i = 0; i < 6; i++) {
-    $('#infoColumn').append("<img src=" + response.items[i].media.m + ">");
+    $('#infoColumn').append("<img class='flickrImg' src=" + response.items[i].media.m + ">");
   }
 }
