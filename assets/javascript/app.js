@@ -21,7 +21,14 @@ var mapCenter
             'height': '400px',
             'border': 'solid',
             'margin-top': '20px'
-        });
+            });
+        $('#infoColumn').css({
+            'display': 'inline-block',
+            'width': '100%',
+            'height': '400px',
+            'border': 'solid',
+            'margin-top': '20px'
+        })
 
         //Search result gets passed through NPS/ API.
         var settings = {
@@ -51,21 +58,24 @@ var mapCenter
 
                 //Get the location name
                 locationName = results[index].fullName;
-                console.log(locationName);
+                // console.log(locationName);
                 // FLICKR API LOGIC
-                var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + locationName;
 
-                $.ajax({
-                        url: url,
-                        method: "GET",
-                        dataType: 'jsonp'
-                    })
-                    .done(function(response) {
-                        console.log("test");
-                    })
-                    .fail(function(error) {
-                        console.log(error);
-                    })
+              //   var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + locationName;
+              //
+              //   $.ajax({
+              //     url: url,
+              //     method: "GET",
+              //     dataType: 'jsonp'
+              //   })
+              //   .done(function(response) {
+              //       console.log("test");
+              //     })
+              //   .fail(function(error) {
+              //     console.log(error);
+              //   })
+              // console.log(locationName);
+
 
                 // Slice the string to break out latLong into two values.
                 latitude = parseInt(latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(',')));
@@ -73,16 +83,14 @@ var mapCenter
 
                 //  add markers/ from results
                 var currentMarker = {
-                    coords: { lat: latitude, lng: longitude },
-                    content: '<h1>' + locationName + '</h1>'
-                };
+
+                        coords: { lat: latitude, lng: longitude},
+                        content: '<h1>' + locationName +  '</h1>',
+                        flickrImg: locationName
+                    };
 
                 // Push the markers into the array
                 markers.push(currentMarker);
-
-                //add markers
-
-
 
             });
 
@@ -99,6 +107,6 @@ var mapCenter
 
 
         //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
-    });
+        });
 
-// });
+});
