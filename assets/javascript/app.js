@@ -5,8 +5,9 @@ var radius;
 var options;
 var map;
 var markers = [];
+var mapCenter
 
-$(window).on('load', function(){
+// $(window).on('load', function() {
 
     //Search on-click reveals the map and column with information.
     $('#submitButton').on('click', function() {
@@ -14,12 +15,13 @@ $(window).on('load', function(){
         initMap(state);
         markers = [];
         //Display Map
-        $('#map').css({'display': 'inline-block',
+        $('#map').css({
+            'display': 'inline-block',
             'width': '100%',
             'height': '400px',
             'border': 'solid',
             'margin-top': '20px'
-            });
+        });
 
         //Search result gets passed through NPS/ API.
         var settings = {
@@ -45,7 +47,7 @@ $(window).on('load', function(){
 
             $.each(results, function(index, value) {
 
-              var latLong = results[index].latLong
+                var latLong = results[index].latLong
 
                 //Get the location name
                 locationName = results[index].fullName;
@@ -54,40 +56,41 @@ $(window).on('load', function(){
                 var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + locationName;
 
                 $.ajax({
-                  url: url,
-                  method: "GET",
-                  dataType: 'jsonp'
-                })
-                .done(function(response) {
-                    console.log("test");
-                  })
-                .fail(function(error) {
-                  console.log(error);
-                })
-              console.log(locationName);
+                        url: url,
+                        method: "GET",
+                        dataType: 'jsonp'
+                    })
+                    .done(function(response) {
+                        console.log("test");
+                    })
+                    .fail(function(error) {
+                        console.log(error);
+                    })
 
                 // Slice the string to break out latLong into two values.
                 latitude = parseInt(latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(',')));
-                longitude = parseInt(latLong.slice(latLong.lastIndexOf(':') +1));
-                console.log(latitude);
-                console.log(longitude);
+                longitude = parseInt(latLong.slice(latLong.lastIndexOf(':') + 1));
 
-            //  add markers/ from results
+                //  add markers/ from results
                 var currentMarker = {
-                        coords: { lat: latitude, lng: longitude},
-                        content: '<h1>' + locationName +  '</h1>'
-                    };
+                    coords: { lat: latitude, lng: longitude },
+                    content: '<h1>' + locationName + '</h1>'
+                };
 
-            // Push the markers into the array
+                // Push the markers into the array
                 markers.push(currentMarker);
-      
-            //add markers
-                
-                
-                
+
+                //add markers
+
+
+
             });
-          initMap();
-          addMarker(markers);
+
+
+            mapCenter = markers[0].coords;
+            console.log(mapCenter);
+            initMap();
+            addMarker(markers);
 
         });
         // Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
@@ -96,6 +99,6 @@ $(window).on('load', function(){
 
 
         //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
-        });
-    
-});
+    });
+
+// });
