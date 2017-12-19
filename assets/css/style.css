@@ -93,6 +93,7 @@ section.frontPage h2 {
     background-position-x: center;
     background-position-y: center;
   background-size: cover;
+  height: 100%;
  }
 
  select{
