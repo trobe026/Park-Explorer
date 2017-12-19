@@ -12,6 +12,9 @@ var initMap = function() {
 
 var addMarker = function(markers) {
 
+
+        
+
         for (var i = 0; i < markers.length; i++) {
 
         var content = '<div id="iw-content"' + markers[i].content + '</div>'
@@ -23,16 +26,15 @@ var addMarker = function(markers) {
             });
 
            console.log(markers[i].flickrImg);
-          
+          var infoWindow = new google.maps.InfoWindow();
 
 
            (function(marker, i) {
+
                     // add click event
                     google.maps.event.addListener(marker, 'click', function() {
-                        infowindow = new google.maps.InfoWindow({
-                            content: marker.content
-                        });
-                        infowindow.open(map, marker);
+                        infoWindow.setContent(marker.content);
+                        infoWindow.open(map, marker);
 
                         var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + markers[i].flickrImg;
                         console.log(markers[i].flickrImg);
