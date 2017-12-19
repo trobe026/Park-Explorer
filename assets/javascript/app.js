@@ -5,7 +5,8 @@ var radius;
 var options;
 var map;
 var markers = [];
-var mapCenter
+var mapCenter;
+
 
 // $(window).on('load', function() {
 
@@ -95,17 +96,15 @@ var mapCenter
                         flickrImg: locationName
                     };
 
+
                 // Push the markers into the array
                 markers.push(currentMarker);
 
             });
-
-
             mapCenter = markers[0].coords;
             console.log(mapCenter);
             initMap();
             addMarker(markers);
-
         });
         // Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
         //Map Options

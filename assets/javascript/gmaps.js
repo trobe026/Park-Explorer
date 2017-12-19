@@ -9,6 +9,7 @@ var initMap = function() {
     );
 }
 
+
 var addMarker = function(markers) {
 
         for (var i = 0; i < markers.length; i++) {
@@ -53,3 +54,4 @@ var addMarker = function(markers) {
                 })(marker, i);
         };//close For loop
 }//close addMarker function
+
