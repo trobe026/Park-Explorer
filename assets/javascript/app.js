@@ -49,7 +49,7 @@ $(window).on('load', function(){
 
                 //Get the location name
                 locationName = results[index].fullName;
-                console.log(locationName);
+                // console.log(locationName);
                 // FLICKR API LOGIC
                 var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + locationName;
 
