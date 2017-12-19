@@ -13,6 +13,7 @@ $('#submitButton').on('click', function() {
     markers = [];
     var infoWindow = new google.maps.InfoWindow();
     //Display Map
+
     $('#map').css({
         'display': 'inline-block',
         'width': '100%',
@@ -38,12 +39,17 @@ $('#submitButton').on('click', function() {
     $('html, body').animate({
         scrollTop: $('#searchForm').offset().top
     }, 1000);
-
+    $('#frontPage').css({
+        'height': '100%'
+    });
+    $('#infoWindowHeader').css({
+        'color': '#fcbd20;'
+    })
     //Search result gets passed through NPS/ API.
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://developer.nps.gov/api/v1/parks?stateCode=" + state + "&limit=20%20=&api_key=FnU7EWa9B2RlDnwnu33mMpYJZuWYhXAbYfGxkFh8",
+        "url": "https://developer.nps.gov/api/v1/parks?stateCode=" + state + "&limit=50%20=&api_key=FnU7EWa9B2RlDnwnu33mMpYJZuWYhXAbYfGxkFh8",
         "method": "GET",
         "headers": {
             "authorization": "Basic Og==",

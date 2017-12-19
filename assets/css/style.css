@@ -63,6 +63,11 @@ h2, h3 {
 #iw-container{
   font-size: 18px;
 }
+#iw-content{
+
+  font-size: 18px;
+
+}
 
 section.frontPage {
   padding: 125px; }
@@ -93,6 +98,7 @@ section.frontPage h2 {
     background-position-x: center;
     background-position-y: center;
   background-size: cover;
+  height: 100%;
  }
 
  select{
