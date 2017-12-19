@@ -25,6 +25,8 @@ function jsonpcallback(response) {
   console.log(response)
   $('#infoColumn').html('')
   for (var i = 0; i < 15; i++) {
+    $('#infoColumn').html()
     $('#infoColumn').append("<img class='flickrImg' src=" + response.items[i].media.m + ">");
+    $(".flickrImg").wrap('<a target="_blank" href=' + response.items[i].link + '></a>');
   }
 }

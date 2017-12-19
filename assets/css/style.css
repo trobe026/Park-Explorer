@@ -32,7 +32,9 @@ h2 {
   border: solid;
   margin-top: 20px;*/
 }
-
+#infoWindowHeader{
+  display: inline-block;
+}
 .flickrImg{
   float: left;
   margin: 2px;
