@@ -13,7 +13,7 @@ var addMarker = function(markers) {
         
         for (var i = 0; i < markers.length; i++) {
 
-        var content = markers[i].content
+        var content = '<div id="iw-content"' + markers[i].content + '</div>'
 
            var marker =  new google.maps.Marker({
                 position: markers[i].coords,
@@ -21,7 +21,8 @@ var addMarker = function(markers) {
                 map:map
             });
 
-           console.log(markers[i].content);
+           console.log(markers[i].flickrImg);
+          
 
 
            (function(marker, i) {

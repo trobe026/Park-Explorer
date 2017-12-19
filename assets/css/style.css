@@ -31,7 +31,13 @@ h2 {
   border: solid;
   margin-top: 20px;*/
 }
-#info
+#infoColumn{
+  display: none;
+}
+
+#iw-container{
+  font-size: 18px;
+}
 
 section.frontPage {
   padding: 125px; }
