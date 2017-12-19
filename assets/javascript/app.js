@@ -14,12 +14,14 @@ var mapCenter;
     $('#submitButton').on('click', function() {
         var state = $('#state').val().trim();
         markers = [];
+        var infoWindow = new google.maps.InfoWindow();
         //Display Map
         $('#map').css({
             'display': 'inline-block',
             'width': '100%',
             'height': '400px',
-            // 'border': 'solid',
+            'border': 'solid',
+            'border-left': 'none',
             'margin-top': '20px'
             });
          $('#infoColumn').css({'display': 'inline-block',
