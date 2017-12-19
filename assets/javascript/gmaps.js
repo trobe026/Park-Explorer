@@ -1,6 +1,6 @@
 var initMap = function() {
     var options = {
-        center: markers[0].coords,
+        center: mapCenter,
         zoom: 5
     };
     map = new google.maps.Map(

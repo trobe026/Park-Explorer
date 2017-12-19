@@ -13,7 +13,6 @@ var mapCenter;
     //Search on-click reveals the map and column with information.
     $('#submitButton').on('click', function() {
         var state = $('#state').val().trim();
-        initMap(state);
         markers = [];
         //Display Map
         $('#map').css({
@@ -113,5 +112,3 @@ var mapCenter;
 
         //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
         });
-
-});
