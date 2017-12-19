@@ -12,7 +12,7 @@ $(window).on('load', function(){
     $('#submitButton').on('click', function() {
         var state = $('#state').val().trim();
         initMap(state);
-
+        markers = [];
         //Display Map
         $('#map').css({'display': 'inline-block',
             'width': '100%',
@@ -86,7 +86,6 @@ $(window).on('load', function(){
                 
                 
             });
-            // for (var i = 0; i < markers.length; i++) {}
           initMap();
           addMarker(markers);
 
