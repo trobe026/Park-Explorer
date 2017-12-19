@@ -14,12 +14,20 @@ $(window).on('load', function(){
         initMap(state);
         markers = [];
         //Display Map
-        $('#map').css({'display': 'inline-block',
+        $('#map').css({
+            'display': 'inline-block',
             'width': '100%',
             'height': '400px',
             'border': 'solid',
             'margin-top': '20px'
             });
+        $('#infoColumn').css({
+            'display': 'inline-block',
+            'width': '100%',
+            'height': '400px',
+            'border': 'solid',
+            'margin-top': '20px'
+        })
 
         //Search result gets passed through NPS/ API.
         var settings = {
