@@ -10,6 +10,7 @@ var mapCenter;
 
 // $(window).on('load', function() {
 
+
     //Search on-click reveals the map and column with information.
     $('#submitButton').on('click', function() {
         var state = $('#state').val().trim();
@@ -94,27 +95,34 @@ var mapCenter;
                 longitude = parseFloat(latLong.slice(latLong.lastIndexOf(':') + 1));
 
                 //  add markers/ from results
+
+
+            if (isNaN(latitude)) {
+                console.log(locationName + 'does not have latitude');
+            } else {
+
                 var currentMarker = {
 
-                        coords: { lat: latitude, lng: longitude},
-                        content: '<h1>' + locationName +  '</h1>',
-                        flickrImg: locationName
-                    };
+                    coords: { lat: latitude, lng: longitude },
+                    content: '<h1>' + locationName + '</h1>',
+                    flickrImg: locationName
+                };
 
 
                 // Push the markers into the array
                 markers.push(currentMarker);
+            }
 
-            });
-            mapCenter = markers[1].coords;
-            console.log(mapCenter);
-            initMap();
-            addMarker(markers);
         });
-        // Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
-        //Map Options
+        mapCenter = markers[0].coords;
+        console.log(mapCenter);
+        initMap();
+        addMarker(markers);
+    });
+    // Map opens with 10 results (markers) that are based on location. The map is located in the div id "googleMap".
+    //Map Options
 
 
 
-        //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
-        });
+    //A list version of the results of the google search appear on the left column. The column is named div id "infoColumn".
+});
