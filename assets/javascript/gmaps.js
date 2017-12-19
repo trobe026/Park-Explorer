@@ -10,7 +10,7 @@ var initMap = function() {
 }
 
 var addMarker = function(markers) {
-        
+
         for (var i = 0; i < markers.length; i++) {
 
         var content = markers[i].content
@@ -31,7 +31,24 @@ var addMarker = function(markers) {
                             content: marker.content
                         });
                         infowindow.open(map, marker);
+
+                        var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + markers[i].flickrImg;
+                        console.log(markers[i].flickrImg);
+
+                        $.ajax({
+                          url: url,
+                          method: "GET",
+                          dataType: 'jsonp'
+                        })
+                        .done(function(response) {
+                            console.log("test");
+                          })
+                        .fail(function(error) {
+                          console.log(error);
+                        })
+                      // console.log(locationName);
+                        console.log(marker.content);
                     });
-                })(marker, i);     
+                })(marker, i);
         };//close For loop
-}//close addMarker function 
+}//close addMarker function
