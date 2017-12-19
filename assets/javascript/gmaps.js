@@ -37,7 +37,7 @@ var addMarker = function(markers) {
                     google.maps.event.addListener(marker, 'click', function() {
                         infoWindow.setContent(marker.content);
                         infoWindow.open(map, marker);
-                        $('#infoColumn').prepend('<div id="infoWindowHeader">' + marker.content + '</div>')
+                        $('#title').html('<div id="infoWindowHeader">' + marker.content + '</div>')
 
                         //Tell flickr what URL to get images from.
                         var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + markers[i].flickrImg;
@@ -48,7 +48,7 @@ var addMarker = function(markers) {
                         marker.addListener('mouseout', function() {
                             infoWindow.close();
                         });
-                        
+
                         $.ajax({
                           url: url,
                           method: "GET",

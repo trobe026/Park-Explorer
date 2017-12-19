@@ -15,13 +15,13 @@ a {
   a:hover, a:focus {
     color: #fcbd20; }
 
-h2,
+h2, h3,
 h6 {
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
   font-weight: 200;
   letter-spacing: 1px; }
 
-h2 {
+h2, h3 {
   color: #7b4397;
 }
 
@@ -41,10 +41,17 @@ h2 {
   border:solid;
 }
 
-#infoColumn{
+#images{
   display: none;
   overflow: scroll;
   float: left;
+}
+#title{
+  display: inline-block;
+}
+#infoColumn{
+  display: none;
+  
 }
 
 #iw-container{
@@ -80,6 +87,12 @@ section.frontPage h2 {
     background-position-x: center;
     background-position-y: center;
   background-size: cover;
+ }
+
+ select{
+  background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: linear-gradient(to left, #7b4397, #dc2430);
+  color: white;
  }
 
 #submitButton {

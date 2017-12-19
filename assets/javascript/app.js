@@ -37,6 +37,12 @@ var mapCenter;
             'border': 'solid',
             'margin-top': '20px'
         })
+        $('#images').css({
+            'display': 'inline-block',
+            'width': '100%',
+            'height': '400px',
+            'margin-top': '20px'
+        })
         $('html, body').animate({
             scrollTop: $('#searchForm').offset().top
         }, 1000);
@@ -45,7 +51,7 @@ var mapCenter;
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://developer.nps.gov/api/v1/parks?stateCode=" + state + "&limit=10%20=&api_key=FnU7EWa9B2RlDnwnu33mMpYJZuWYhXAbYfGxkFh8",
+            "url": "https://developer.nps.gov/api/v1/parks?stateCode=" + state + "&limit=20%20=&api_key=FnU7EWa9B2RlDnwnu33mMpYJZuWYhXAbYfGxkFh8",
             "method": "GET",
             "headers": {
                 "authorization": "Basic Og==",
@@ -56,7 +62,7 @@ var mapCenter;
 
         //AJAX response for NPS and Instagram
         $.ajax(settings).done(function(response) {
-
+            console.log(response);
             //pulled variables from National Park Service website
             var results = response.data;
             var latitude
