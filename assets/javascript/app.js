@@ -37,6 +37,9 @@ var mapCenter;
             'border': 'solid',
             'margin-top': '20px'
         })
+        $('html, body').animate({
+            scrollTop: $('#searchForm').offset().top
+        }, 1000);
 
         //Search result gets passed through NPS/ API.
         var settings = {
@@ -102,7 +105,7 @@ var mapCenter;
                 markers.push(currentMarker);
 
             });
-            mapCenter = markers[0].coords;
+            mapCenter = markers[1].coords;
             console.log(mapCenter);
             initMap();
             addMarker(markers);

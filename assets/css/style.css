@@ -11,6 +11,7 @@ a {
   -webkit-transition: all .35s;
   -moz-transition: all .35s;
   transition: all .35s; }
+
   a:hover, a:focus {
     color: #fcbd20; }
 
@@ -82,7 +83,7 @@ section.frontPage h2 {
   color: white;
   background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
   background: linear-gradient(to left, #7b4397, #dc2430); }
-}
+
 
 input {
   color: gray;
