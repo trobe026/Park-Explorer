@@ -19,7 +19,13 @@ var mapCenter
             'display': 'inline-block',
             'width': '100%',
             'height': '400px',
-            'border': 'solid',
+            // 'border': 'solid',
+            'margin-top': '20px'
+            });
+         $('#infoColumn').css({'display': 'inline-block',
+            'width': '100%',
+            'height': '400px',
+            // 'border': 'solid',
             'margin-top': '20px'
             });
         $('#infoColumn').css({
