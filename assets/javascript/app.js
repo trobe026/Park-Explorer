@@ -4,7 +4,7 @@ var state;
 var radius;
 var options;
 var map;
-var markers = [];
+var parks = [];
 
 $(window).on('load', function(){
 
@@ -81,14 +81,14 @@ $(window).on('load', function(){
                     };
 
             // Push the markers into the array
-                markers.push(currentMarker);
+                parks.push(currentMarker);
 
 
             //     for (var i = 0; i < markers.length; i++) {
             // //add markers
                 addMarker(currentMarker);
             //     }
-
+            console.log(parks);
             });
 
 
@@ -102,5 +102,5 @@ $(window).on('load', function(){
         });
     };
     getParksInfo();
-    initMap();
+    // initMap();
 });

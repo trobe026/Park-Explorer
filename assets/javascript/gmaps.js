@@ -1,28 +1,14 @@
 
 
-var addMarker = function(props) {
+function addMarker(props) {
 
-             var options = {
-            center: { lat: 45.5231, lng: -122.6765 },
-            zoom: 6
-             };
-            
-            for (var i = 0; i < markers.length; i++) {
-
-                    var marker = new google.maps.Marker({
-                    position: props.coords,
-                    map:map
-                
-                });
-            var map = new google.maps.Map(document.getElementById("map"), options);
-            }
-        
-
-            
-        
+            marker = new google.maps.Marker({
+                position: props.coords,
+                map: map,
+                // icon:props.iconImage
+            });
 
 
-            
             if (props.content) {
                 var infoWindow = new google.maps.InfoWindow({
                     content: props.content
@@ -32,10 +18,8 @@ var addMarker = function(props) {
                 marker.addListener('click', function() {
                     infoWindow.open(map, marker);
                 });
-            
             };
-       marker.setMap(map)
-    }
+        }
 
 var initMap = function() {
     var options = {
@@ -51,7 +35,10 @@ var initMap = function() {
     // function mapMarkers(){};
 
 
-    
+        // for (var i = 0; i < markers.length; i++) {
+        //     //add markers
+        //     addMarker(markers[i]);
+
     // google.maps.event.addListener(map, 'click',
     //     function(event) {
     //         //add marker on click
@@ -90,7 +77,7 @@ var initMap = function() {
     //     }
     // ];
     //loop through markers
-    
+
 
     // addMarker({
     //  coords:{lat:45.5231, lng: -122.6765},
@@ -108,5 +95,5 @@ var initMap = function() {
     //  content: '<h1>Hood River </h1>'
     // });
 
-    
+
 };
