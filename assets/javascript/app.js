@@ -34,7 +34,7 @@ $('#submitButton').on('click', function() {
         'display': 'inline-block',
         'width': '100%',
         'height': '347px',
-        // 'margin-top': '20px',
+        'margin-top': '20px',
         'overflow': 'scroll'
     })
     $('html, body').animate({
