@@ -34,7 +34,7 @@ $('#submitButton').on('click', function() {
         'display': 'inline-block',
         'width': '100%',
         'height': '347px',
-        'margin-top': '20px',
+        // 'margin-top': '20px',
         'overflow': 'scroll'
     })
     $('html, body').animate({
@@ -75,13 +75,13 @@ $('#submitButton').on('click', function() {
 
             //Get the location name
             locationName = results[index].fullName;
-            
+
 
             // Slice the string to break out latLong into two values.
             latitude = parseFloat(latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(',')));
             longitude = parseFloat(latLong.slice(latLong.lastIndexOf(':') + 1));
 
-        
+
 
             //  add markers/ from results
             var currentMarker = {
@@ -98,7 +98,7 @@ $('#submitButton').on('click', function() {
             }
 
             // Push the markers into the array
-            
+
 
         });
         mapCenter = markers[1].coords;
@@ -107,9 +107,3 @@ $('#submitButton').on('click', function() {
         addMarker(markers);
     });
 });
-    
-
-
-
-
-
