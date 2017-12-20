@@ -5,6 +5,7 @@ var radius;
 var options;
 var map;
 var markers = [];
+var badMarkers= [];
 var mapCenter;
 
     //Search on-click reveals the map and column with information.
@@ -80,9 +81,7 @@ $('#submitButton').on('click', function() {
             latitude = parseFloat(latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(',')));
             longitude = parseFloat(latLong.slice(latLong.lastIndexOf(':') + 1));
 
-        // if (isNaN(latitude)) {
-        //     console.log(locationName + 'does not have latitude');
-        // } else {
+        
 
             //  add markers/ from results
             var currentMarker = {
@@ -91,10 +90,15 @@ $('#submitButton').on('click', function() {
                     flickrImg: locationName
                 };
 
-        
+            if (isNaN(latitude)) {
+                badMarkers.push(currentMarker);
+                console.log(locationName + 'does not have latitude');
+            } else {
+                markers.push(currentMarker);
+            }
 
             // Push the markers into the array
-            markers.push(currentMarker);
+            
 
         });
         mapCenter = markers[1].coords;
