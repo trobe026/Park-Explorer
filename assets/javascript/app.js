@@ -19,20 +19,20 @@ $('#submitButton').on('click', function() {
         'width': '100%',
         'height': '400px',
         'border': 'solid',
-        'border-left': 'none',
+        // 'border-left': 'none',
         'margin-top': '20px'
         });
-    $('#infoColumn').css({
-        'display': 'inline-block',
-        'width': '100%',
-        'height': '400px',
-        'border': 'solid',
-        'margin-top': '20px'
-    })
+    // $('#infoColumn').css({
+    //     'display': 'inline-block',
+    //     'width': '100%',
+    //     'height': '400px',
+    //     'border': 'solid',
+    //     'margin-top': '20px'
+    // })
     $('#images').css({
         'display': 'inline-block',
         'width': '100%',
-        'height': '350px',
+        'height': '347px',
         'margin-top': '20px',
         'overflow': 'scroll'
     })
@@ -45,6 +45,7 @@ $('#submitButton').on('click', function() {
     $('#infoWindowHeader').css({
         'color': '#fcbd20;'
     })
+
     //Search result gets passed through NPS/ API.
     var settings = {
         "async": true,
@@ -90,6 +91,7 @@ $('#submitButton').on('click', function() {
                     flickrImg: locationName
                 };
 
+        
 
             // Push the markers into the array
             markers.push(currentMarker);
