@@ -101,7 +101,7 @@ $('#submitButton').on('click', function() {
             
 
         });
-        mapCenter = markers[1].coords;
+        mapCenter = markers[2].coords;
         console.log(mapCenter);
         initMap();
         addMarker(markers);
