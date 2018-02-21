@@ -27,6 +27,42 @@
 </head>
 
 <body id="page-top">
+  <div id="fb-root"></div>
+  <!-- facebook SDK OAUTH -->
+  <script>
+
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    }
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '{170436580253748}',
+        cookie     : true,
+        xfbml      : true,
+        version    : '{latest-api-version}'
+      });
+
+      FB.AppEvents.logPageView();
+
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=170436580253748&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+    </script>
+
     <section class="frontPage bg-primary text-center" id="frontPage">
         <div class="container">
             <div class="row">
@@ -101,6 +137,7 @@
                                     </select>
                                 </div> <!-- close form group -->
                                 <input type="submit" class="btn" id="submitButton" value="Find Parks!">
+                                <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();" scope="public_profile,email"></div>
                             </form>
                         </div> <!-- close searchForm -->
                     </div> <!-- close control panel -->
