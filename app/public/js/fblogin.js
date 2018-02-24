@@ -75,6 +75,7 @@ console.log(loginbtn);
 // }
 function checkLoginState() {
   var modal = document.getElementById('mymodal');
+  var loginbtn = document.getElementById("lg-btn");
   console.log(modal);
   modal.style.display = "block";
   // var logoutBtn = document.getElementById('login-button2');
@@ -86,18 +87,19 @@ function checkLoginState() {
     testAPI();
     // logoutBtn.style.display = "block";
     modal.style.display = "none";
-    var loginbtn = document.getElementById("lg-btn");
+
     $("#logout").append(loginbtn);
+    $('#status').show();
   }
   else {
-
-
-
     // FB.login();
+    $('.modal-content').append(loginbtn);
+    // createLoginWindow();
     console.log('Logged out.');
+
     // logoutBtn.style.display = "block";
     modal.style.display = "block";
-
+    $('#status').hide();
     // checkLoginState();
 
   }
@@ -118,6 +120,7 @@ function facebookAuth() {
       // Listen to the auth.login which will be called when the user logs in
     // using the Login button
     FB.Event.subscribe('auth.login', function(response) {
+      console.log(response);
       // We want to reload the page now so PHP can read the cookie that the
       // Javascript SDK sat. But we don't want to use
       // window.location.reload() because if this is in a canvas there was a
