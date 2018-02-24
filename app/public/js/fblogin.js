@@ -86,12 +86,18 @@ function checkLoginState() {
     testAPI();
     // logoutBtn.style.display = "block";
     modal.style.display = "none";
+    var loginbtn = document.getElementById("lg-btn");
+    $("#logout").append(loginbtn);
   }
   else {
+
+
+
     // FB.login();
     console.log('Logged out.');
     // logoutBtn.style.display = "block";
     modal.style.display = "block";
+
     // checkLoginState();
 
   }
