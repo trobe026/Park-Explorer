@@ -116,6 +116,10 @@ section.frontPage h2 {
   background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
   background: linear-gradient(to left, #7b4397, #dc2430); }
 
+  #favoriteButton{
+    color: white;
+    background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
+    background: linear-gradient(to left, #7b4397, #dc2430); }
 
 input {
   color: gray;

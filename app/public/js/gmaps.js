@@ -11,7 +11,7 @@ var initMap = function() {
 var addMarker = function(markers) {
 
     for (var i = 0; i < markers.length; i++) {
-        var content = '<div id="iw-content"' + markers[i].content + '</div>' + '<button class="btn">Add to Favorites</button>'
+        var content = '<div id="iw-content"' + markers[i].content + '</div>' + '<button class="btn" id="favoritesButton">Add to Favorites</button>'
         var marker =  new google.maps.Marker({
                 position: markers[i].coords,
                 content: content,
