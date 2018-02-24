@@ -1,17 +1,18 @@
-var mysql = require("mysql");
+var Sequelize = require("sequelize");
 
-// Set up our connection information
-if(process.env.JAWSDB_URL){
-  connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-  connection = mysql.createConnection({
-  port: 8889,
+// Creates mySQL connection using Sequelize
+var sequelize = new Sequelize("park_explorer", "root", "password", {
   host: "localhost",
-  user: "root",
-  password: "root",
-  database: "park_explorer"
-  });
-};
+  dialect: "mysql",
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
+
+// Exports the connection for other files to use
+module.exports = sequelize;
 
 // Connect to the database
 connection.connect(function(err) {
