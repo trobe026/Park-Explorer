@@ -4,12 +4,11 @@ var sequelize = require("../config/connection.js");
 
 // Creates a "User" model that matches up with DB
 var User = sequelize.define("User", {
-  // the routeName gets saved as a string
-  // the name of the User (a string)
+  // the User's last name (a string)
   first_name: Sequelize.STRING,
-  // the User's role (a string)
+  // the User's last name (a string)
   last_name: Sequelize.STRING,
-  // and the User's force points (an int)
+  // and the User's unique ID
   unique_id: Sequelize.INTEGER
 });
 
