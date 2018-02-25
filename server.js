@@ -11,6 +11,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 require("./app/routes/api-routes.js")(app);
 require("./app/routes/html-routes.js")(app);
 

@@ -142,7 +142,7 @@ label {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 2; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 400px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -157,9 +157,10 @@ label {
     position: relative;
     background-color: #3b5998;
     margin: auto;
-    border: 1px solid #888;
-    top: 40%;
-    width: 40%;
+    border: 1px solid #3b5998;
+    /* top: 60%; */
+    display: inline-table;
+    /* width: 40%; */
     height: 5%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
@@ -167,7 +168,19 @@ label {
     animation-name: animatetop;
     animation-duration: 0.4s;
     text-align: center;
+    /* opacity: 0; */
+    /* z-index: 0; */
 }
+
+#logout {
+  display: inline-table;
+  margin: 15px 15px 0 0;
+}
+
+/* .modal-content #lg-btn {
+  z-index: 99;
+  opacity: 100;
+} */
 
 /* @-webkit-keyframes animatetop {
     from {top:30230px; opacity:0}
@@ -193,10 +206,10 @@ label {
     cursor: pointer;
 }
 
-.login-button {
+/* .login-button {
   position: relative;
   margin: auto 0;
-}
+} */
 
 
 
