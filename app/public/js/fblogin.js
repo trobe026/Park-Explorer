@@ -87,7 +87,8 @@ function checkLoginState() {
     testAPI();
     // logoutBtn.style.display = "block";
     modal.style.display = "none";
-
+    $(loginbtn).attr("data-size","small");
+    console.log(loginbtn);
     $("#logout").append(loginbtn);
     $('#status').show();
   }
