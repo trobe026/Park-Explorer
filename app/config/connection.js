@@ -14,14 +14,14 @@ var sequelize = new Sequelize("park_explorer", "root", "password", {
 // Exports the connection for other files to use
 module.exports = sequelize;
 
-// Connect to the database
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
+// // Connect to the database
+// connection.connect(function(err) {
+//   if (err) {
+//     console.error("error connecting: " + err.stack);
+//     return;
+//   }
+//   console.log("connected as id " + connection.threadId);
+// });
 
-// Export connection
-module.exports = connection;
+// // Export connection
+// module.exports = connection;
