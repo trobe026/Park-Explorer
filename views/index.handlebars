@@ -1,35 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PUBlic</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    <!-- Custom fonts -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-    <meta name="theme-color" content="#ffffff">
+  <div class="row">
+    <div class="col-xs-12">
 
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-</head>
+    </div>
+  </div>
+    <div id="logout" class="pull-right"></div>
+  <div id="fb-root"></div>
 
-<body id="page-top">
-  <div id="fb-root">
-    <div id="logout"></div>
-    <div id="status"></div>
+
+
     <!-- <fb:login-button
     id="login-button2"
     data-size="large"
@@ -42,9 +21,11 @@
     data-use-continue-as="false"
     data-use-login-as="true">
   </fb:login-button> -->
-</div>
+
     <section class="frontPage bg-primary text-center" id="frontPage">
+
         <div class="container">
+          <div id="status"></div>
 
             <div class="row">
                 <div class="col-md-8 mx-auto">
@@ -118,8 +99,22 @@
                                     </select>
                                 </div> <!-- close form group -->
                                 <input type="submit" class="btn" id="submitButton" value="Find Parks!">
+
+
+
                                 <!-- <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div> -->
-                                <div id="login"></div>
+                                <div class="row">
+
+                                  <div class="col-xs-4">
+                                    <a href="/untappd">
+                                      <button type="button" name="button">Over 21?</button>
+                                    </a>
+                                    <div id="login"></div>
+
+                                  </div>
+
+                                </div>
+
 
                                 <!-- <div id='mymodal' class="modal">
                                   <div class="modal-content">
@@ -158,11 +153,15 @@
             </div>
 
 </section>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XbBnnAkDpIGfPce9gn1AxIrzpquR54&callback=initMap" type="text/javascript"></script>
-    <script type="text/javascript" src="js/app.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/gmaps.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/flickr.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/fblogin.js" type="text/javascript"></script>
-</body>
-
-</html>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XbBnnAkDpIGfPce9gn1AxIrzpquR54&callback=initMap" type="text/javascript"></script>
+<script type="text/javascript" src="/js/app.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/gmaps.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/flickr.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/fblogin.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/untappd.js" type="text/javascript"></script>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XbBnnAkDpIGfPce9gn1AxIrzpquR54&callback=initMap" type="text/javascript"></script>
+    <script type="text/javascript" src="./app/public/js/app.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./app/public/js/gmaps.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./app/public/js/flickr.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./app/public/js/fblogin.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./app/public/js/untappd.js" type="text/javascript"></script> -->
