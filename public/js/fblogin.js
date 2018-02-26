@@ -155,7 +155,15 @@ console.log('Welcome!  Fetching your information.... ');
 FB.api('/me', function(response) {
   console.log('Successful login for: ' + response.name);
   console.log(response)
-  document.getElementById('status').innerHTML =
-    'Welcome ' + response.name + '!';
-    });
+  document.getElementById('status').innerHTML = 'Welcome ' + response.name + '!';
+  var newUser = {
+    full_name: response.name,
+    fb_id: response.id
+  }
+  console.log(newUser);
+  $.post('/api/newUser', newUser)
+  .then(function(data) {
+    console.log(data);
+  });
+  });
   }
