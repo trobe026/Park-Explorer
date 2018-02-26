@@ -21,11 +21,14 @@ $('#search-btn').on('click', function() {
       var results = response.response.beers.items;
       console.log(response.response.beers.items[0].beer.beer_name);
       for (var i = 0; i < resultLen; i++) {
-        var $newRow = $(`<tr><th>${results[i].beer.beer_name}</th><th>${results[i].beer.beer_description}</th><th>${results[i].beer.beer_abv}</th><th><img src='${results[i].beer.beer_label}'></th><th>${results[i].brewery.brewery_name}</th></tr>`
+        var $newRow = $(`<tr><th>${results[i].beer.beer_name}</th><th>${results[i].beer.beer_description}</th><th>${results[i].beer.beer_abv}</th><th><img src='${results[i].beer.beer_label}'></th><th>${results[i].brewery.brewery_name}</th><<th><button class="btn btn-default"><span class="glyphicon glyphicon-heart"></span></button></th></tr>`
       );
       $('#searchResults').append($newRow);
       }
-
+      $('.glyphicon-heart').on('click', function() {
+        console.log('test');
+        $(this).attr('class','glyphicon glyphicon-ok');
+      });
     })
   }
 });
