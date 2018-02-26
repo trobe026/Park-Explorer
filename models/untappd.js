@@ -36,5 +36,13 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true
   });
 
+  BeerInfo.associate = function(models) {
+    BeerInfo.belongsTo(models.Users, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
 return BeerInfo;
 };
