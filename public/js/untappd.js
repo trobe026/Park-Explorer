@@ -51,8 +51,10 @@ $('#search-btn').on('click', function() {
             beer_desc: $(this).parent().parent().siblings(':nth-child(2)').text(),
             beer_abv: $(this).parent().parent().siblings(':nth-child(3)').text(),
             beer_labelUrl: $(this).parent().parent().siblings(':nth-child(4)').find('img').attr('src'),
-            brewery_name: $(this).parent().parent().siblings(':nth-child(5)').text()
+            brewery_name: $(this).parent().parent().siblings(':nth-child(5)').text(),
+            UserFbId: 2070550389628558
           };
+
           console.log(newBeer);
           $.post("/api/newBeer", newBeer)
           .then(function(data) {
