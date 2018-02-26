@@ -217,6 +217,12 @@ label {
   margin: auto 0;
 } */
 
+/* UNTAPPD CSS */
+#top {
+  font-style: italic;
+  font-weight: bold;
+}
+
 .glyphicon-heart {
   color: red;
 }
