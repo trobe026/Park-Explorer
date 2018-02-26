@@ -1,7 +1,9 @@
 html,
 body {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  text-align: center;
+}
 
 body {
   font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; }
@@ -23,6 +25,10 @@ h6 {
 
 h2, h3 {
   color: #7b4397;
+}
+
+table {
+  color: black;
 }
 
 #map{
@@ -211,6 +217,19 @@ label {
   margin: auto 0;
 } */
 
+/* UNTAPPD CSS */
+#top {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.glyphicon-heart {
+  color: red;
+}
+
+.glyphicon-ok {
+  color: green;
+}
 
 
 
