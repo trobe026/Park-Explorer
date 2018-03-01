@@ -1,73 +1,211 @@
-var initMap = function() {
-    var options = {
-        center: mapCenter,
-        zoom: 5
+var pos
+var map;
+var service;
+var infowindow;
+var destinationList = [];
+
+var fetchLocalBreweries = function (pos) {
+  // find breweries near the user or latlng of the brewery we searched
+  var settings;
+  
+  var request = {
+    location: {
+      lat: pos.lat,
+      lng: pos.lng
+    },
+    radius: '2000',
+    type: ['bar'],
+    keyword: "brewery"
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
+
+
+  function callback(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length && i < 4; i++) {
+        var place = results[i];
+        if (results[i].permanently_closed == true) {
+          return;
+        }
+        destinationList.push(results[i].id);
+        // createMarker(results[i]);
+      }
+    }
+  }
+  // if there aren't five breweries nearby, grab some top-rated pubs
+  if (destinationList.length < 5) {
+    var request = {
+      location: {
+        lat: pos.lat,
+        lng: pos.lng
+      },
+      radius: '2000',
+      type: ['bar'],
+      keyword: "pub"
     };
-    map = new google.maps.Map(
-        document.getElementById('map'),
-        options
-    );
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+
+
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length && destinationList.length < 5; i++) {
+          var place = results[i];
+          if (results[i].permanently_closed == true) {
+            return;
+          }
+          destinationList.push(results[i].id)
+          // createMarker(results[i]);
+        }
+      }
+    }
+  }
+  destinationList.splice(0, (destinationList.length - 5));
+  console.log(destinationList);
+
+  // now that we have destinations, let's have google brew up a nice path among them and slap it on the map
+  calculateAndDisplayRoute(destinationList);
+
 }
-var addMarker = function(markers) {
-
-    for (var i = 0; i < markers.length; i++) {
-        var content = '<div id="iw-content"' + markers[i].content + '</div>' + '<button class="btn" id="favoritesButton">Add to Favorites</button>'
-        var marker =  new google.maps.Marker({
-                position: markers[i].coords,
-                content: content,
-                map:map
-        });
-        console.log(markers[i])
-
-        var infoWindow = new google.maps.InfoWindow();
-
-        (function(marker, i) {
-            //Mouseover icon and reveal the title
-            marker.addListener('mouseover', function() {
-                    infoWindow.setContent(marker.content);
-                    infoWindow.open(map, marker);
-            });
-            // add click event
-            google.maps.event.addListener(marker, 'click', function() {
-                infoWindow.setContent(marker.content);
-                infoWindow.open(map, marker);
-                //Pop open the div with the images in it.
-                $('#infoColumn').css({
-                    'display': 'inline-block',
-                    'width': '100%',
-                    'height': '400px',
-                    'border': 'solid',
-                    'margin-top': '20px'
-                })
-                $('#title').html('<div id="infoWindowHeader">' + marker.content + '</div>')
-
-                //Tell flickr what URL to get images from.
-                var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=jsonpcallback&tagmode=all&tags=' + markers[i].flickrImg;
+// if we've already searched for the brewery, center the map on that and find nearby destinations
+if (1 == 9) {
 
 
+}
+// // otherwise, use current location
+else {
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: 30.307182, lng: -97.755996 },
+      zoom: 12
+    });
+    infoWindow = new google.maps.InfoWindow;
 
-                // assuming you also want to hide the infowindow when user mouses-out
-                marker.addListener('mouseout', function() {
-                    infoWindow.close();
-                });
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        infoWindow.open(map);
+        map.setCenter(pos);
+        fetchLocalBreweries(pos)
+      }, function () {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  }
 
-                $.ajax({
-                  url: url,
-                  method: "GET",
-                  dataType: 'jsonp'
-                })
-                .done(function(response) {
-                    console.log("test");
-                  })
-                .fail(function(error) {
-                  console.log(error);
-                })
-                // console.log(locationName);
-                console.log(marker.content);
-            //close add listener function
-            });
-            console.log(markers[i].flickrImg);
-        //close markers, i function
-        })(marker, i);
-    };//close For loop
-};//close addMarker function
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+      'Error: The Geolocation service failed.' :
+      'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+  };
+};
+
+
+// this takes our destinations array and turns them into directions
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  var directionsService = new google.maps.DirectionsService();
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var waypts = [];
+  for (var i = 2; i < destinationList.length; i++) {
+    waypts.push({
+      location: destinationList[i],
+      stopover: true
+    });
+  }
+  console.log(destinationList);
+
+
+  directionsService.route({
+    origin: {
+      id: destinationList[0]
+    },
+    destination: {
+     id: destinationList[1]
+    },
+    waypoints: waypts,
+    optimizeWaypoints: true,
+    travelMode: 'TRANSIT'
+  }, function (response, status) {
+    if (status === 'OK') {
+      directionsDisplay.setDirections(response);
+      var route = response.routes[0];
+      var summaryPanel = document.getElementById('map');
+      summaryPanel.innerHTML = '';
+      // For each route, display summary information.
+      for (var i = 0; i < route.legs.length; i++) {
+        var routeSegment = i + 1;
+        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+          '</b><br>';
+        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+      }
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    };
+  });
+}
+
+
+
+// // AJAX response for NPS and Instagram
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+//   //pulled variables from National Park Service website
+//   var results = response.data;
+//   var latitude
+//   var longitude
+//   var locationName
+
+//   $.each(results, function (index, value) {
+
+//     var latLong = results[index].latLong
+
+//     //Get the location name
+//     locationName = results[index].fullName;
+
+
+//     // Slice the string to break out latLong into two values.
+//     latitude = parseFloat(latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(',')));
+//     longitude = parseFloat(latLong.slice(latLong.lastIndexOf(':') + 1));
+
+
+
+//     //  add markers/ from results
+//     var currentMarker = {
+//       coords: { lat: latitude, lng: longitude },
+//       content: '<h1>' + locationName + '</h1>',
+//       flickrImg: locationName
+//     };
+
+//     if (isNaN(latitude)) {
+//       badMarkers.push(currentMarker);
+//       console.log(locationName + 'does not have latitude');
+//     } else {
+//       markers.push(currentMarker);
+//     }
+
+//     // Push the markers into the array
+
+
+//   });
+//   mapCenter = markers[2].coords;
+//   console.log(mapCenter);
+//   initMap();
+//   addMarker(markers);
+// });
