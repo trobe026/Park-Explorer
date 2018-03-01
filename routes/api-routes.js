@@ -25,6 +25,29 @@ module.exports = function(app) {
     }
   });
 
+<<<<<<< HEAD
+app.post("/api/newUser", function(req, res) {
+  db.Users.findOrCreate({
+    where: {
+      fb_id: req.body.fb_id.trim()
+    },
+    defaults: {
+      fb_id: req.body.fb_id.trim(),
+      full_name: req.body.full_name.trim()
+    }
+  });
+
+  app.post("/api/favorites:?", function(req, res){
+    db.Users.findOne({
+      include:
+      [db.User]
+      ,
+      Where:
+      [req.body.fb_id]
+    })
+  })
+
+=======
   app.post("/api/newUser", function(req, res) {
     db.Users.findOrCreate({
       where: {
@@ -35,6 +58,7 @@ module.exports = function(app) {
         full_name: req.body.full_name.trim()
       }
     });
+>>>>>>> 2b6abec4971acbc1eef54e3871e348e9550a47ce
   });
 
   app.post("/api/newBeer", function(req, res) {
@@ -55,5 +79,4 @@ module.exports = function(app) {
       }
     });
   });
-
 };
