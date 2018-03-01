@@ -87,9 +87,14 @@ FB.api('/me', function(response) {
     fb_id: response.id
   }
   console.log(newUser);
+  
   $.post('/api/newUser', newUser)
   .then(function(data) {
     console.log(data);
   });
   });
 }
+
+
+
+
