@@ -54,11 +54,10 @@ module.exports = function(app) {
       defaults: {
         fb_id: req.body.fb_id.trim(),
         full_name: req.body.full_name.trim()
-
       }
     });
-
   });
+
   app.post("/api/newBeer", function(req, res) {
     db.BeerInfo.create({
       beer_name: req.body.beer_name,
