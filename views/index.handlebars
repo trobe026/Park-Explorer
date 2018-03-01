@@ -36,16 +36,18 @@
         <div class="row text-center">
 
             <div class="col-xs-4">
-                <a href="/untappd">
-                    <button type="button" class="btn" name="button">Over 21? Pick your favorite beers!</button>
-                </a>
+
                 <div id="login"></div>
 
             </div>
         </div>
         <div class="row" id="bottom">
             <div class="col-md-4 mx-auto">
+
                 <div id="controlPanel">
+                    <a href="/untappd">
+                        <button type="button" class="btn" name="button">Over 21? Pick your favorite beers!</button>
+                    </a>
                     <div id="searchType">
                         <a href data-type="search" class="selected"></a>
                     </div>
@@ -67,20 +69,18 @@
         <!-- close col-md-4 -->
     </div>
     <!-- close row -->
-    <div class="row" id="searchResults">
-        <div class="col-md-6 mx-auto animated zoomIn" id="infoColumn">
-            <div class="row" id="title"></div>
-            <div class="row" id="imageRow">
-                <div class="col-md-12" id="images"></div>
-            </div>
-        </div>
-        <div class="col-md-6 mx-auto animated zoomIn" id="map" libraries="places"></div>
+    <div class="row">
+        <div class="col-md-6 mx-auto animated zoomIn" id="map" libraries="places, directions"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mx-auto" id="directions-panel" libraries="directions"></div>
     </div>
 
 </section>
 
 <script type="text/javascript" src="/js/gmaps.js" type="text/javascript"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLqqQUio_x0z2rWW6YuuDN2Vx-LaAJYks&callback=initMap&libraries=places" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLqqQUio_x0z2rWW6YuuDN2Vx-LaAJYks&callback=initMap&libraries=places"
+    type="text/javascript"></script>
 <script type="text/javascript" src="/js/app.js" type="text/javascript"></script>
 <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XbBnnAkDpIGfPce9gn1AxIrzpquR54&callback=initMap" type="text/javascript"></script>
     <script type="text/javascript" src="./app/public/js/app.js" type="text/javascript"></script>

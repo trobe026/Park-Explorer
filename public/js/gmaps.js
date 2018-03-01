@@ -23,50 +23,58 @@ var fetchLocalBreweries = function (pos) {
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
+      console.log(results);
       for (var i = 0; i < results.length && i < 4; i++) {
-        var place = results[i];
+        var place = results[i].name;
         if (results[i].permanently_closed == true) {
           return;
         }
-        destinationList.push(results[i].id);
+        destinationList.push(place);
         // createMarker(results[i]);
       }
-    }
-  }
-  // if there aren't five breweries nearby, grab some top-rated pubs
-  if (destinationList.length < 5) {
-    var request = {
-      location: {
-        lat: pos.lat,
-        lng: pos.lng
-      },
-      radius: '2000',
-      type: ['bar'],
-      keyword: "pub"
-    };
+      // if there aren't five breweries nearby, grab some top-rated pubs
+      if (destinationList >= 5) {
+        destinationList.splice(4, (destinationList.length - 5));
+        console.log(destinationList);
+        calculateAndDisplayRoute();
+      } else if (destinationList.length < 5) {
+        var request = {
+          location: {
+            lat: pos.lat,
+            lng: pos.lng
+          },
+          radius: '2000',
+          type: ['bar'],
+          keyword: "pub"
+        };
 
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
 
 
-    function callback(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length && destinationList.length < 5; i++) {
-          var place = results[i];
-          if (results[i].permanently_closed == true) {
-            return;
+        function callback(results, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length && destinationList.length < 5; i++) {
+              var place = results[i].name;
+              if (results[i].permanently_closed == true) {
+                return;
+              }
+              destinationList.push(place)
+              // createMarker(results[i]);
+            }
           }
-          destinationList.push(results[i].id)
-          // createMarker(results[i]);
+          destinationList.splice(0, (destinationList.length - 5));
+          console.log(destinationList);
+          calculateAndDisplayRoute();
         }
       }
     }
   }
-  destinationList.splice(0, (destinationList.length - 5));
-  console.log(destinationList);
+
+
 
   // now that we have destinations, let's have google brew up a nice path among them and slap it on the map
-  calculateAndDisplayRoute(destinationList);
+
 
 }
 // if we've already searched for the brewery, center the map on that and find nearby destinations
@@ -120,32 +128,32 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
   var waypts = [];
-  for (var i = 2; i < destinationList.length; i++) {
+  for (var i = 1; i < destinationList.length; i++) {
     waypts.push({
       location: destinationList[i],
       stopover: true
     });
   }
   console.log(destinationList);
+  console.log(waypts);
+  console.log("Origin is: " + destinationList[0]);
+  console.log("Destination is: " + destinationList[0])
 
 
   directionsService.route({
-    origin: {
-      id: destinationList[0]
-    },
-    destination: {
-     id: destinationList[1]
-    },
+    origin: destinationList[0],
+    destination:  destinationList[0],
     waypoints: waypts,
     optimizeWaypoints: true,
-    travelMode: 'TRANSIT'
+    travelMode: 'BICYCLING'
   }, function (response, status) {
     if (status === 'OK') {
       directionsDisplay.setDirections(response);
       var route = response.routes[0];
-      var summaryPanel = document.getElementById('map');
+      var summaryPanel = document.getElementById('directions-panel');
       summaryPanel.innerHTML = '';
       // For each route, display summary information.
+      console.log(route.legs);
       for (var i = 0; i < route.legs.length; i++) {
         var routeSegment = i + 1;
         summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
@@ -155,7 +163,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
       }
     } else {
-      window.alert('Directions request failed due to ' + status);
+      console.log('Directions request failed due to ' + status);
     };
   });
 }
