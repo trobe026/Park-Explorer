@@ -7,6 +7,7 @@ var destinationList = [];
 var fetchLocalBreweries = function (pos) {
   // find breweries near the user or latlng of the brewery we searched
   var settings;
+  
   var request = {
     location: {
       lat: pos.lat,

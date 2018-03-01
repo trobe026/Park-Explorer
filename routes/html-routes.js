@@ -11,6 +11,6 @@ module.exports = function(app) {
   });
 
   app.get("/favorites", function(req, res){
-    res.render("favorites")
-  })
+    res.render("favorites");
+  });
 };
