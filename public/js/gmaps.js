@@ -151,44 +151,6 @@ else {
 
 
 // this takes our destinations array and turns them into directions
-
-// function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-
-
-//   console.log(destinationList);
-//   console.log(waypts);
-//   console.log("Origin is: " + destinationList[0]);
-//   console.log("Destination is: " + destinationList[0])
-
-
-//   directionsService.route({
-//     origin: destinationList[0],
-//     destination:  destinationList[0],
-//     waypoints: waypts,
-//     optimizeWaypoints: true,
-//     travelMode: 'BICYCLING'
-//   }, function (response, status) {
-//     if (status === 'OK') {
-//       directionsDisplay.setDirections(response);
-//       var route = response.routes[0];
-//       var summaryPanel = document.getElementById('directions-panel');
-//       summaryPanel.innerHTML = '';
-//       // For each route, display summary information.
-//       console.log(route.legs);
-//       for (var i = 0; i < route.legs.length; i++) {
-//         var routeSegment = i + 1;
-//         summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-//           '</b><br>';
-//         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-//         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-//         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-//       }
-//     } else {
-//       console.log('Directions request failed due to ' + status);
-//     };
-//   });
-// }
-
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
   markerArray, stepDisplay, map) {
   // First, remove any existing markers from the map.
@@ -204,7 +166,7 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
   }
 
   // Retrieve the start and end locations and create a DirectionsRequest using
-  // WALKING directions.
+  // BICYCLING directions.
   directionsService.route({
     origin: destinationList[0].name,
     destination: destinationList[0].name,
@@ -222,12 +184,13 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
       summaryPanel.innerHTML = '';
       // For each route, display summary information.
       var route = response.routes[0];
-      console.log(route.legs);
+      // console.log(route.legs);
       for (var i = 0; i < route.legs.length; i++) {
         var routeSegment = i + 1;
+        // console.log(route.legs[i]);
         summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
           '</b><br>';
-        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+        summaryPanel.innerHTML += route.legs[i].start_address + ' to ' ;
         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
       };
