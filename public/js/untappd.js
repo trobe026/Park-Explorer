@@ -1,3 +1,7 @@
+// $(window).on('load', function() {
+//   createLoginWindow();
+// });
+
 $('#search-btn').on('click', function() {
   $('#searchResults').empty();
 
