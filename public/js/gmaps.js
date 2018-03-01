@@ -20,11 +20,12 @@ var fetchLocalBreweries = function (pos) {
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
-
+  console.log('fetching local breweries')
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       console.log(results);
+      console.log('got em')
       for (var i = 0; i < results.length && i < 4; i++) {
         var place = {
           name: results[i].name,
@@ -40,6 +41,8 @@ var fetchLocalBreweries = function (pos) {
       if (destinationList >= 5) {
         destinationList.splice(4, (destinationList.length - 5));
         console.log(destinationList);
+        calculateAndDisplayRoute(
+          directionsDisplay, directionsService, markerArray, stepDisplay, map);
       } else if (destinationList.length < 5) {
         var request = {
           location: {
@@ -51,7 +54,6 @@ var fetchLocalBreweries = function (pos) {
           keyword: "pub"
         };
 
-        service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, callback);
 
 
@@ -69,21 +71,7 @@ var fetchLocalBreweries = function (pos) {
               // createMarker(results[i]);
             }
           }
-          destinationList.splice(0, (destinationList.length - 5));
-          console.log(destinationList);
-          destinationList.forEach(function() {
-            var marker = new google.maps.Marker(destinationList[i]);
-            markerArray.push(marker);
-          });
-          console.log(markerArray);
 
-          var directionsService = new google.maps.DirectionsService();
-          var directionsDisplay = new google.maps.DirectionsRenderer();
-          // Create a renderer for directions and bind it to the map.
-          var directionsDisplay = new google.maps.DirectionsRenderer({ map: map });
-
-          // Instantiate an info window to hold step text.
-          var stepDisplay = new google.maps.InfoWindow;
 
           // Display the route between the initial start and end selections.
           calculateAndDisplayRoute(
@@ -127,9 +115,10 @@ else {
           lng: position.coords.longitude
         };
         infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
+        infoWindow.setContent('Your Location');
         infoWindow.open(map);
         map.setCenter(pos);
+        console.log('about to fetch local breweries')
         fetchLocalBreweries(pos)
       }, function () {
         handleLocationError(true, infoWindow, map.getCenter());
@@ -153,10 +142,23 @@ else {
 // this takes our destinations array and turns them into directions
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
   markerArray, stepDisplay, map) {
+  destinationList.splice(0, (destinationList.length - 5));
+  console.log(destinationList);
+
+  console.log(markerArray);
+
+  var directionsService = new google.maps.DirectionsService();
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  // Create a renderer for directions and bind it to the map.
+  var directionsDisplay = new google.maps.DirectionsRenderer({ map: map });
+
+  // Instantiate an info window to hold step text.
+  var stepDisplay = new google.maps.InfoWindow;
   // First, remove any existing markers from the map.
   for (var i = 0; i < markerArray.length; i++) {
     markerArray[i].setMap(null);
   }
+  // make the waypoints for the round trip
   var waypts = [];
   for (var i = 1; i < destinationList.length; i++) {
     waypts.push({
@@ -190,7 +192,7 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
         // console.log(route.legs[i]);
         summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
           '</b><br>';
-        summaryPanel.innerHTML += route.legs[i].start_address + ' to ' ;
+        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
       };
@@ -211,6 +213,11 @@ function showSteps(directionResult, markerArray, stepDisplay, map) {
     marker.setPosition(myRoute.steps[i].start_location);
     attachInstructionText(
       stepDisplay, marker, myRoute.steps[i].instructions, map);
+    //this is the old code for making markers
+    // destinationList.forEach(function() {
+    //   var marker = new google.maps.Marker(destinationList[i]);
+    //   markerArray.push(marker);
+    // });
   }
 }
 
