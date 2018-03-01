@@ -45,11 +45,7 @@ $('#search-btn').on('click', function() {
             beer_abv: $(this).parent().parent().siblings(':nth-child(3)').text(),
             beer_labelUrl: $(this).parent().parent().siblings(':nth-child(4)').find('img').attr('src'),
             brewery_name: $(this).parent().parent().siblings(':nth-child(5)').text(),
-<<<<<<< HEAD
             UserFbId: sessionStorage.getItem("fb_id")
-=======
-            UserFbId: 2070550389628558
->>>>>>> 9ff69e601e641c9b15660a123009f60729718d87
           };
 
           $.post("/api/newBeer", newBeer)
