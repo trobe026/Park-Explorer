@@ -86,6 +86,8 @@ FB.api('/me', function(response) {
     full_name: response.name,
     fb_id: response.id
   }
+  sessionStorage.setItem("name", newUser.full_name);
+  sessionStorage.setItem("fb_id", newUser.fb_id)
   console.log(newUser);
   
   $.post('/api/newUser', newUser)

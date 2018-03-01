@@ -11,7 +11,6 @@ module.exports = function(app) {
 
     if (req.query.beer === '') {
       console.log('test1')
-
     } else {
       console.log('test2')
       request.get({
@@ -25,7 +24,6 @@ module.exports = function(app) {
     }
   });
 
-<<<<<<< HEAD
 app.post("/api/newUser", function(req, res) {
   db.Users.findOrCreate({
     where: {
@@ -47,18 +45,6 @@ app.post("/api/newUser", function(req, res) {
     })
   })
 
-=======
-  app.post("/api/newUser", function(req, res) {
-    db.Users.findOrCreate({
-      where: {
-        fb_id: req.body.fb_id.trim()
-      },
-      defaults: {
-        fb_id: req.body.fb_id.trim(),
-        full_name: req.body.full_name.trim()
-      }
-    });
->>>>>>> 2b6abec4971acbc1eef54e3871e348e9550a47ce
   });
 
   app.post("/api/newBeer", function(req, res) {

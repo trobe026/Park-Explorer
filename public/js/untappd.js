@@ -42,7 +42,7 @@ $('#search-btn').on('click', function() {
             beer_abv: $(this).parent().parent().siblings(':nth-child(3)').text(),
             beer_labelUrl: $(this).parent().parent().siblings(':nth-child(4)').find('img').attr('src'),
             brewery_name: $(this).parent().parent().siblings(':nth-child(5)').text(),
-            UserFbId: currentFbUser
+            UserFbId: sessionStorage.getItem("fb_id")
           };
 
           $.post("/api/newBeer", newBeer)
