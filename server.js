@@ -20,6 +20,7 @@ app.set("view engine", "handlebars");
 
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
+require("./routes/brewsearch.js");
 
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {

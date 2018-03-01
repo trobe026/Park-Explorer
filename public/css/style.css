@@ -41,6 +41,9 @@ table {
 #infoWindowHeader{
   display: inline-block;
 }
+#directions-panel{
+  color: maroon;
+}
 .flickrImg{
   float: left;
   margin: 2px;
