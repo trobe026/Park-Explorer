@@ -1,3 +1,4 @@
+
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
@@ -35,7 +36,6 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     freezeTableName: true
   });
-
   BeerInfo.associate = function(models) {
     BeerInfo.belongsTo(models.Users, {
       foreignKey: {
