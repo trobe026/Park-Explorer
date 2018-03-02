@@ -63,7 +63,7 @@ function facebookAuth() {
       appId      : '{170436580253748}',
       cookie     : true,
       xfbml      : true,
-      version    : '{v2.12}'
+      version    : 'v2.12'
     });
   };
 
