@@ -5,10 +5,26 @@ var infowindow;
 var destinationList = [];
 var markerArray = [];
 var waypts = [];
+var travelModeSelection = "BICYCLING";
 
-if (travelModeSelection == undefined) {
-  var travelModeSelection = "BICYCLING";
-}
+$(window).resize(function() {
+  $('#map').css(`height`, window.innerHeight);
+  });
+
+$('#submitButton').on('click', function(){
+  event.preventDefault();
+  console.log($('#brewery-search').text + $('input[name=transit]:checked').val())
+  $.post("/api/make-map", {
+  search: $('#brewery-search').text,
+  transit:  $('input[name=transit]:checked').val()
+  }, function(req, res){
+      console.log("this is where the response goes");
+      console.log(res);
+      travelModeSelection = res.travelMode;
+  });
+});
+
+
 
 
 var fetchLocalBreweries = function (pos) {
@@ -222,9 +238,6 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
       // console.log(route.legs);
       for (var i = 0; i < route.legs.length; i++) {
         var routeSegment = i + 1;
-        // console.log(route.legs[i]);
-        console.log(waypts);
-        console.log(response.routes[0].waypoint_order[i]);
         if (i == 0) {
           summaryPanel.innerHTML += '<h3>' + destinationList[0].name  +
           '</h3><br>';
