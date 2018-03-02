@@ -31,11 +31,7 @@ var fetchLocalBreweries = function (pos) {
     keyword: "brewery"
   };
 
-
   service.nearbySearch(request, cb);
-  console.log('fetching local breweries');
-  console.log(request);
-
   function cb(results, status) {
     console.log(status);
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -149,7 +145,6 @@ else {
       center: { lat: 30.307182, lng: -97.755996 },
       zoom: 14
     });
-    infoWindow = new google.maps.InfoWindow;
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -162,7 +157,6 @@ else {
         // infoWindow.setContent('Your Location');
         // infoWindow.open(map);
         map.setCenter(pos);
-        console.log('about to fetch local breweries')
         fetchLocalBreweries(pos)
       }, function () {
         handleLocationError(true, infoWindow, map.getCenter());
@@ -172,7 +166,6 @@ else {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   }
-
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -187,7 +180,6 @@ else {
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
   markerArray, stepDisplay, map) {
   destinationList.splice(0, (destinationList.length - 5));
-  
   
   console.log("this is the destination list:")
   console.log(destinationList);
