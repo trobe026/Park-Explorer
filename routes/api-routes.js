@@ -54,10 +54,10 @@ app.post("/api/newUser", function(req, res) {
     }
   });
 
-  app.get("/api/favorites", function(req, res){
-    var currentUser = sessionStorage.getItem("fb_id");
-    if( db.User === currentUser){
-      db.User.findAll({include:[db.BeerInfo]}).then(function(favorites) {
+  app.get("/api/:favorites?", function(req, res){
+    if( db.User === req.query.body){
+      db.User.findAll({include:[db.BeerInfo]})
+      .then(function(favorites) {
         res.json(favorites);
       });
     } 

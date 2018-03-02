@@ -1,6 +1,7 @@
 $(window).on('load', function() {
+    var currentUser = sessionStorage.getItem('fb_id')
     
-    $.get("/api/favorites", function(data) {
+    $.get("/api/favorites", currentUser, function(data) {
         console.log(JSON.parse(data));
 
 //     for (var i = 0; i < resultLen; i++) {
