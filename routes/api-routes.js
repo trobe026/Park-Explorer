@@ -53,16 +53,28 @@ app.post("/api/newUser", function(req, res) {
       full_name: req.body.full_name.trim()
     }
   });
+});
 
-  app.get("/api/:favorites?", function(req, res){
-    if( db.User === req.query.body){
-      db.User.findAll({include:[db.BeerInfo]})
-      .then(function(favorites) {
-        res.json(favorites);
-      });
-    } 
-  })
-  });
+app.get("/api2/:favorites?", function(req, res){
+  console.log(req.query.currentUser);
+    db.Users.findAll({
+      where: {
+        fb_id: req.params.currentUser
+      },
+      include:[{
+        model: db.BeerInfo,
+        required: false
+      }],
+      order: [
+        ['createdAt', 'DESC']
+      ]
+    })
+    .then(function(favorites) {
+      res.json(favorites);
+    });
+});
+
+  
   app.post("/api/newBeer", function(req, res) {
     db.BeerInfo.create({
       beer_name: req.body.beer_name,

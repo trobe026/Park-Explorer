@@ -1,8 +1,5 @@
-
-
 $('#search-btn').on('click', function() {
   $('#searchResults').empty();
-
 
   var choice = {
     beer: $('#beer').val().trim(),
