@@ -62,7 +62,6 @@ app.post("/api/newUser", function(req, res) {
       });
     } 
   })
-
   });
   app.post("/api/newBeer", function(req, res) {
     db.BeerInfo.create({
