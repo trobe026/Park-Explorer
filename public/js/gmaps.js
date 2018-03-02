@@ -3,6 +3,7 @@ var map;
 var service;
 var infowindow;
 var destinationList = [];
+var markerArray = [];
 
 var fetchLocalBreweries = function (pos) {
   // find breweries near the user or latlng of the brewery we searched
@@ -20,56 +21,79 @@ var fetchLocalBreweries = function (pos) {
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
-
+  console.log('fetching local breweries')
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
+      console.log(results);
+      console.log('got em')
       for (var i = 0; i < results.length && i < 4; i++) {
-        var place = results[i];
+        var place = {
+          name: results[i].name,
+          place_id: results[i].place_id
+        }
         if (results[i].permanently_closed == true) {
           return;
         }
-        destinationList.push(results[i].id);
+        destinationList.push(place);
         // createMarker(results[i]);
       }
-    }
-  }
-  // if there aren't five breweries nearby, grab some top-rated pubs
-  if (destinationList.length < 5) {
-    var request = {
-      location: {
-        lat: pos.lat,
-        lng: pos.lng
-      },
-      radius: '2000',
-      type: ['bar'],
-      keyword: "pub"
-    };
+      // if there aren't five breweries nearby, grab some top-rated pubs
+      if (destinationList >= 5) {
+        destinationList.splice(4, (destinationList.length - 5));
+        console.log(destinationList);
+        calculateAndDisplayRoute(
+          directionsDisplay, directionsService, markerArray, stepDisplay, map);
+      } else if (destinationList.length < 5) {
+        var request = {
+          location: {
+            lat: pos.lat,
+            lng: pos.lng
+          },
+          radius: '2000',
+          type: ['bar'],
+          keyword: "pub"
+        };
 
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
+        service.nearbySearch(request, callback);
 
 
-    function callback(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length && destinationList.length < 5; i++) {
-          var place = results[i];
-          if (results[i].permanently_closed == true) {
-            return;
+        function callback(results, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length && destinationList.length < 5; i++) {
+              var place = {
+                name: results[i].name,
+                place_id: results[i].place_id
+              };
+              if (results[i].permanently_closed == true) {
+                return;
+              }
+              destinationList.push(place)
+              // createMarker(results[i]);
+            }
           }
-          destinationList.push(results[i].id)
-          // createMarker(results[i]);
+
+
+          // Display the route between the initial start and end selections.
+          calculateAndDisplayRoute(
+            directionsDisplay, directionsService, markerArray, stepDisplay, map);
+          // Listen to change events from the start and end lists.
+          // var onChangeHandler = function () {
+          //   calculateAndDisplayRoute(
+          //     directionsDisplay, directionsService, markerArray, stepDisplay, map);
+          // };
+          // // document.getElementById('start').addEventListener('change', onChangeHandler);
+          // document.getElementById('end').addEventListener('change', onChangeHandler);
         }
       }
     }
   }
-  destinationList.splice(0, (destinationList.length - 5));
-  console.log(destinationList);
-
-  // now that we have destinations, let's have google brew up a nice path among them and slap it on the map
-  calculateAndDisplayRoute(destinationList);
-
 }
+
+
+
+// now that we have destinations, let's have google brew up a nice path among them and slap it on the map
+
 // if we've already searched for the brewery, center the map on that and find nearby destinations
 if (1 == 9) {
 
@@ -92,9 +116,10 @@ else {
           lng: position.coords.longitude
         };
         infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
+        infoWindow.setContent('Your Location');
         infoWindow.open(map);
         map.setCenter(pos);
+        console.log('about to fetch local breweries')
         fetchLocalBreweries(pos)
       }, function () {
         handleLocationError(true, infoWindow, map.getCenter());
@@ -116,96 +141,93 @@ else {
 
 
 // this takes our destinations array and turns them into directions
+function calculateAndDisplayRoute(directionsDisplay, directionsService,
+  markerArray, stepDisplay, map) {
+  destinationList.splice(0, (destinationList.length - 5));
+  console.log(destinationList);
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  console.log(markerArray);
+
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
+  // Create a renderer for directions and bind it to the map.
+  var directionsDisplay = new google.maps.DirectionsRenderer({ map: map });
+
+  // Instantiate an info window to hold step text.
+  var stepDisplay = new google.maps.InfoWindow;
+  // First, remove any existing markers from the map.
+  for (var i = 0; i < markerArray.length; i++) {
+    markerArray[i].setMap(null);
+  }
+  // make the waypoints for the round trip
   var waypts = [];
-  for (var i = 2; i < destinationList.length; i++) {
+  for (var i = 1; i < destinationList.length; i++) {
     waypts.push({
-      location: destinationList[i],
+      location: destinationList[i].name,
       stopover: true
     });
   }
-  console.log(destinationList);
 
-
+  // Retrieve the start and end locations and create a DirectionsRequest using
+  // BICYCLING directions.
   directionsService.route({
-    origin: {
-      id: destinationList[0]
-    },
-    destination: {
-     id: destinationList[1]
-    },
+    origin: destinationList[0].name,
+    destination: destinationList[0].name,
     waypoints: waypts,
-    optimizeWaypoints: true,
-    travelMode: 'TRANSIT'
+    travelMode: 'BICYCLING'
   }, function (response, status) {
+    // Route the directions and pass the response to a function to create
+    // markers for each step.
     if (status === 'OK') {
+      document.getElementById('warnings-panel').innerHTML =
+        '<b>' + response.routes[0].warnings + '</b>';
       directionsDisplay.setDirections(response);
-      var route = response.routes[0];
-      var summaryPanel = document.getElementById('map');
+      showSteps(response, markerArray, stepDisplay, map);
+      var summaryPanel = document.getElementById('directions-panel');
       summaryPanel.innerHTML = '';
       // For each route, display summary information.
+      var route = response.routes[0];
+      // console.log(route.legs);
       for (var i = 0; i < route.legs.length; i++) {
         var routeSegment = i + 1;
+        // console.log(route.legs[i]);
         summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
           '</b><br>';
         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-      }
+      };
     } else {
-      window.alert('Directions request failed due to ' + status);
-    };
+      console.log('Directions request failed due to ' + status);
+    }
   });
 }
 
+function showSteps(directionResult, markerArray, stepDisplay, map) {
+  // For each step, place a marker, and add the text to the marker's infowindow.
+  // Also attach the marker to an array so we can keep track of it and remove it
+  // when calculating new routes.
+  var myRoute = directionResult.routes[0].legs[0];
+  for (var i = 0; i < myRoute.steps.length; i++) {
+    var marker = markerArray[i] = markerArray[i] || new google.maps.Marker;
+    marker.setMap(map);
+    marker.setPosition(myRoute.steps[i].start_location);
+    attachInstructionText(
+      stepDisplay, marker, myRoute.steps[i].instructions, map);
+    //this is the old code for making markers
+    // destinationList.forEach(function() {
+    //   var marker = new google.maps.Marker(destinationList[i]);
+    //   markerArray.push(marker);
+    // });
+  }
+}
 
+function attachInstructionText(stepDisplay, marker, text, map) {
+  google.maps.event.addListener(marker, 'click', function () {
+    // Open an info window when the marker is clicked on, containing the text
+    // of the step.
+    stepDisplay.setContent(text);
+    stepDisplay.open(map, marker);
+  });
+}
 
-// // AJAX response for NPS and Instagram
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-//   //pulled variables from National Park Service website
-//   var results = response.data;
-//   var latitude
-//   var longitude
-//   var locationName
-
-//   $.each(results, function (index, value) {
-
-//     var latLong = results[index].latLong
-
-//     //Get the location name
-//     locationName = results[index].fullName;
-
-
-//     // Slice the string to break out latLong into two values.
-//     latitude = parseFloat(latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(',')));
-//     longitude = parseFloat(latLong.slice(latLong.lastIndexOf(':') + 1));
-
-
-
-//     //  add markers/ from results
-//     var currentMarker = {
-//       coords: { lat: latitude, lng: longitude },
-//       content: '<h1>' + locationName + '</h1>',
-//       flickrImg: locationName
-//     };
-
-//     if (isNaN(latitude)) {
-//       badMarkers.push(currentMarker);
-//       console.log(locationName + 'does not have latitude');
-//     } else {
-//       markers.push(currentMarker);
-//     }
-
-//     // Push the markers into the array
-
-
-//   });
-//   mapCenter = markers[2].coords;
-//   console.log(mapCenter);
-//   initMap();
-//   addMarker(markers);
-// });
