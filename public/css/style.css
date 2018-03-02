@@ -127,10 +127,11 @@ section.frontPage h2 {
   background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
   background: linear-gradient(to left, #7b4397, #dc2430); }
 
-  #favoritesButton{
-    color: white;
-    background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
-    background: linear-gradient(to left, #7b4397, #dc2430); }
+#beerButton{
+  margin-bottom: 5px;
+  color: white;
+  background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: linear-gradient(to left, #7b4397, #dc2430); }
 
 input {
   color: gray;
@@ -223,9 +224,17 @@ label {
 } */
 
 /* UNTAPPD CSS */
-#top {
-  font-style: italic;
-  font-weight: bold;
+#top{
+  background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: linear-gradient(to left, #7b4397, #dc2430); 
+}
+
+#top th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  /* background-color: -webkit-linear-gradient(to left, #7b4397, #dc2430); */
+  color: white;
 }
 
 .glyphicon-heart {
