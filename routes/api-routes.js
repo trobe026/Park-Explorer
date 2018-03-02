@@ -43,7 +43,6 @@ module.exports = function(app) {
     }
   });
 
-<<<<<<< HEAD
 app.post("/api/newUser", function(req, res) {
   db.Users.findOrCreate({
     where: {
@@ -55,30 +54,14 @@ app.post("/api/newUser", function(req, res) {
     }
   });
 
-  app.post("/api/favorites:?", function(req, res){
-    db.Users.findOne({
-      include:
-      [db.User]
-      ,
-      Where:
-      [req.body.fb_id]
-    })
+  app.get("/api/favorites", function(req, res){
+    var currentUser = sessionStorage.getItem("fb_id");
+    if( db.User === currentUser){
+      db.User.findAll({include:[db.BeerInfo]}).then(function(favorites) {
+        res.json(favorites);
+      });
+    } 
   })
-
-  });
-=======
-  app.post("/api/newUser", function(req, res) {
-    db.Users.findOrCreate({
-      where: {
-        fb_id: req.body.fb_id.trim()
-      },
-      defaults: {
-        fb_id: req.body.fb_id.trim(),
-        full_name: req.body.full_name.trim()
-
-      }
-    });
->>>>>>> 9ff69e601e641c9b15660a123009f60729718d87
 
   });
   app.post("/api/newBeer", function(req, res) {

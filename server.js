@@ -1,12 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-<<<<<<< HEAD
 var db = require("./models");
-=======
-
-var db = require("./models");
-
->>>>>>> 9ff69e601e641c9b15660a123009f60729718d87
 var app = express();
 var PORT = process.env.PORT || 8080;
 
