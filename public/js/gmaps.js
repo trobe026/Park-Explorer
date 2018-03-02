@@ -7,25 +7,9 @@ var markerArray = [];
 var waypts = [];
 var travelModeSelection = "BICYCLING";
 
-$(window).resize(function() {
+$(window).resize(function () {
   $('#map').css(`height`, window.innerHeight);
-  });
-
-$('#submitButton').on('click', function(){
-  event.preventDefault();
-  console.log($('#brewery-search').text + $('input[name=transit]:checked').val())
-  $.post("/api/make-map", {
-  search: $('#brewery-search').text,
-  transit:  $('input[name=transit]:checked').val()
-  }, function(req, res){
-      console.log("this is where the response goes");
-      console.log(res);
-      travelModeSelection = res.travelMode;
-  });
 });
-
-
-
 
 var fetchLocalBreweries = function (pos) {
   // find breweries near the user or latlng of the brewery we searched
@@ -70,7 +54,7 @@ var fetchLocalBreweries = function (pos) {
         console.log(destinationList);
         calculateAndDisplayRoute(
           directionsDisplay, directionsService, markerArray, stepDisplay, map);
-      } else if (destinationList.length < 5 ) {
+      } else if (destinationList.length < 5) {
         var request = {
           location: {
             lat: pos.lat,
@@ -146,49 +130,38 @@ var fetchLocalBreweries = function (pos) {
 }
 
 
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 30.307182, lng: -97.755996 },
+    zoom: 14
+  });
 
-// now that we have destinations, let's have google brew up a nice path among them and slap it on the map
-
-// if we've already searched for the brewery, center the map on that and find nearby destinations
-if (1 == 9) {
-
-
-}
-// // otherwise, use current location
-else {
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: 30.307182, lng: -97.755996 },
-      zoom: 14
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      // infoWindow.setPosition(pos);
+      // infoWindow.setContent('Your Location');
+      // infoWindow.open(map);
+      map.setCenter(pos);
+      fetchLocalBreweries(pos)
+    }, function () {
+      handleLocationError(true, infoWindow, map.getCenter());
     });
-
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        // infoWindow.setPosition(pos);
-        // infoWindow.setContent('Your Location');
-        // infoWindow.open(map);
-        map.setCenter(pos);
-        fetchLocalBreweries(pos)
-      }, function () {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
   }
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-      'Error: The Geolocation service failed.' :
-      'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
-  };
+}
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
 };
 
 
@@ -196,7 +169,7 @@ else {
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
   markerArray, stepDisplay, map) {
   destinationList.splice(0, (destinationList.length - 5));
-  
+
   console.log("this is the destination list:")
   console.log(destinationList);
   console.log("This is the marker array:")
@@ -236,16 +209,17 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
       // For each route, display summary information.
       var route = response.routes[0];
       // console.log(route.legs);
+      summaryPanel.innerHTML = "";
       for (var i = 0; i < route.legs.length; i++) {
         var routeSegment = i + 1;
         if (i == 0) {
-          summaryPanel.innerHTML += '<h3>' + destinationList[0].name  +
-          '</h3><br>';
+          summaryPanel.innerHTML += '<h3>' + destinationList[0].name +
+            '</h3><br>';
         } else {
-          summaryPanel.innerHTML += '<h3>to ' + waypts[(response.routes[0].waypoint_order[(i - 1)])].location  +
-          '</h3><br>';
+          summaryPanel.innerHTML += '<h3>to ' + waypts[(response.routes[0].waypoint_order[(i - 1)])].location +
+            '</h3><br>';
         }
-          
+
         summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
           '</b><br>';
         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
@@ -257,7 +231,6 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
     }
   });
 }
-
 function attachInstructionText(stepDisplay, marker, text, map) {
   google.maps.event.addListener(marker, 'click', function () {
     // Open an info window when the marker is clicked on, containing the text

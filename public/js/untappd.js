@@ -2,10 +2,6 @@ $('#search-btn').on('click', function() {
   event.preventDefault();
   $('#searchResults').empty();
 
-<<<<<<< HEAD
-=======
-console.log($('#beer').val().trim())
->>>>>>> 6a3fdbdfea4cafaded70d581181a0ef1cba9dfa6
   var choice = {
     beer: $('#beer').val().trim(),
     brewery: $('#brewery').val().trim()
