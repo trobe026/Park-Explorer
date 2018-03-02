@@ -8,7 +8,14 @@ console.log(process.env.CLIENT_SECRET);
 module.exports = function(app) {
   app.get("/api1/:brews?", function(req, res) {
     if (req.query.beer === '') {
-      // console.log('test1')
+      console.log('test1')
+      request.get({
+        url: 'https://api.untappd.com/v4/search/brewery?' + 'client_id=' + process.env.CLIENT_ID + '&client_secret=' + process.env.CLIENT_SECRET
+        + '&q=' + req.query.brewery
+      }
+    ,(err,resp,body) => {
+      res.json(body);
+    })
     } else {
       console.log('test2')
       request.get({
@@ -41,7 +48,7 @@ app.post("/api/newUser", function(req, res) {
           required: false
         }],
         order: [
-          ['createdAt', 'DESC']
+          ['fb_', 'DESC']
         ]
       })
       .then(function(favorites) {
