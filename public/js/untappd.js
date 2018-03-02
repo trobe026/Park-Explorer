@@ -10,12 +10,7 @@ console.log($('#beer').val().trim())
   console.log(choice)
 
     $.get("/api1/", choice, function(data) {
-<<<<<<< HEAD
       
-=======
-      console.log('testing123')
-
->>>>>>> e08f7d83ab52dd896b299179b4b599151337047d
       var beerData = JSON.parse(data);
 
       var resultLen = beerData.response.beers.items.length;
