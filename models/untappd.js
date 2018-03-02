@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var BeerInfo = sequelize.define("BeerInfo", {
+  var Beers = sequelize.define("Beers", {
 
     beer_name: {
       type: DataTypes.STRING,
@@ -36,13 +36,13 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     freezeTableName: true
   });
-  BeerInfo.associate = function(models) {
-    BeerInfo.belongsTo(models.Users, {
+  Beers.associate = function(models) {
+    Beers.belongsTo(models.Users, {
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-return BeerInfo;
+return Beers;
 };

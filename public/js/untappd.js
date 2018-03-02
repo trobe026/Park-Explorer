@@ -6,8 +6,8 @@ $('#search-btn').on('click', function() {
     brewery: $('#brewery').val().trim()
   };
 
-    $.get("/api/", choice, function(data) {
-      
+    $.get("/api1/", choice, function(data) {
+
       var beerData = JSON.parse(data);
 
       var resultLen = beerData.response.beers.items.length;
