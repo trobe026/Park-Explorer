@@ -1,8 +1,9 @@
 $(window).on('load', function() {
     var currentUser = sessionStorage.getItem('fb_id')
-    
-    $.get("/api/favorites", currentUser, function(data) {
-        console.log(JSON.parse(data));
+    console.log(currentUser);
+    $.get("/api/favorites", function(data) {
+      console.log(data);
+      // console.log(JSON.parse(data));
 
 //     for (var i = 0; i < resultLen; i++) {
 //     if (i === 0) {
@@ -15,5 +16,3 @@ $(window).on('load', function() {
 //   }
 });
   });
-
-  
