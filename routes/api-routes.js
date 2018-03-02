@@ -54,18 +54,15 @@ app.post("/api/newUser", function(req, res) {
     }
   });
 
-  app.post("/api/favorites:?", function(req, res){
-    db.Users.findOne({
-      include:
-      [db.User]
-      ,
-      Where:
-      [req.body.fb_id]
-    })
+  app.get("/api/:favorites?", function(req, res){
+    if( db.User === req.query.body){
+      db.User.findAll({include:[db.BeerInfo]})
+      .then(function(favorites) {
+        res.json(favorites);
+      });
+    } 
   })
-
   });
-
   app.post("/api/newBeer", function(req, res) {
     db.BeerInfo.create({
       beer_name: req.body.beer_name,

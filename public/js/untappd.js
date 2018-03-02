@@ -10,7 +10,7 @@ $('#search-btn').on('click', function() {
   };
 
     $.get("/api/", choice, function(data) {
-
+      
       var beerData = JSON.parse(data);
 
       var resultLen = beerData.response.beers.items.length;
