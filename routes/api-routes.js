@@ -41,7 +41,7 @@ app.post("/api/newUser", function(req, res) {
           required: false
         }],
         order: [
-          ['createdAt', 'DESC']
+          ['fb_id', 'DESC']
         ]
       })
       .then(function(favorites) {
