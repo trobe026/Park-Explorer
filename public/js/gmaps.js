@@ -5,10 +5,26 @@ var infowindow;
 var destinationList = [];
 var markerArray = [];
 var waypts = [];
+var travelModeSelection = "BICYCLING";
 
-if (travelModeSelection == undefined) {
-  var travelModeSelection = "BICYCLING";
-}
+$(window).resize(function() {
+  $('#map').css(`height`, window.innerHeight);
+  });
+
+$('#submitButton').on('click', function(){
+  event.preventDefault();
+  console.log($('#brewery-search').text + $('input[name=transit]:checked').val())
+  $.post("/api/make-map", {
+  search: $('#brewery-search').text,
+  transit:  $('input[name=transit]:checked').val()
+  }, function(req, res){
+      console.log("this is where the response goes");
+      console.log(res);
+      travelModeSelection = res.travelMode;
+  });
+});
+
+
 
 
 var fetchLocalBreweries = function (pos) {
@@ -31,11 +47,7 @@ var fetchLocalBreweries = function (pos) {
     keyword: "brewery"
   };
 
-
   service.nearbySearch(request, cb);
-  console.log('fetching local breweries');
-  console.log(request);
-
   function cb(results, status) {
     console.log(status);
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -149,7 +161,6 @@ else {
       center: { lat: 30.307182, lng: -97.755996 },
       zoom: 14
     });
-    infoWindow = new google.maps.InfoWindow;
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -162,7 +173,6 @@ else {
         // infoWindow.setContent('Your Location');
         // infoWindow.open(map);
         map.setCenter(pos);
-        console.log('about to fetch local breweries')
         fetchLocalBreweries(pos)
       }, function () {
         handleLocationError(true, infoWindow, map.getCenter());
@@ -172,7 +182,6 @@ else {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   }
-
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -187,7 +196,6 @@ else {
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
   markerArray, stepDisplay, map) {
   destinationList.splice(0, (destinationList.length - 5));
-  
   
   console.log("this is the destination list:")
   console.log(destinationList);
@@ -230,9 +238,6 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
       // console.log(route.legs);
       for (var i = 0; i < route.legs.length; i++) {
         var routeSegment = i + 1;
-        // console.log(route.legs[i]);
-        console.log(waypts);
-        console.log(response.routes[0].waypoint_order[i]);
         if (i == 0) {
           summaryPanel.innerHTML += '<h3>' + destinationList[0].name  +
           '</h3><br>';
