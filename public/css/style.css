@@ -236,7 +236,14 @@ label {
 .glyphicon-ok {
   color: green;
 }
-
+.pull-right{
+  background: #7b4397;
+  color: white;
+}
+.pull-left{
+  background: #dc2430;
+  color: white;
+}
 
 
 @media only screen and (max-width: 895px) {
