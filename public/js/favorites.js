@@ -11,8 +11,6 @@ $(window).on('load', function() {
         }
       }
       console.log(userData)
-      // console.log(userData[0].Beers[0].beer_name)
-      // console.log(JSON.parse(data));
       var resultLen = userData[0].Beers.length;
       var results = userData[0].Beers;
       for (var i = 0; i < resultLen; i++) {
