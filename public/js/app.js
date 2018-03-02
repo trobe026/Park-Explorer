@@ -16,10 +16,10 @@ $('#map').css({
 });
         var infoWindow = new google.maps.InfoWindow();
 //Search on-click reveals the map and column with information.
-$('#submitButton').on('click', function(){
-    event.preventDefault();
-    $.post("/api/brewery-search", $('#brewery-search').text, function(req, res){
-        console.log("this is where the response goes");
-        console.log(res)
-    });
-});
+// $('#submitButton').on('click', function(){
+//     event.preventDefault();
+//     $.post("/api/brewery-search", $('#brewery-search').text, function(req, res){
+//         console.log("this is where the response goes");
+//         console.log(res)
+//     });
+// });

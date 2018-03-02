@@ -24,11 +24,17 @@
                     <a href="/untappd">
                         <button type="button" class="btn" name="button">Over 21? Pick your favorite beers!</button>
                     </a>
-                    <div id="searchForms">
-                        <form action="/" method="post" id="searchForm">
+                    <div id="beer">
+                    </div>
+                        <form action="" role='form'>
                             <div class="form-group">
-                                <label for="brewery-search"> Search for a brewery: </label>
-                                <input id="brewery-search" name="brewerySearch" type="text"></input>
+
+                                <label for="">Brewery Name:</label>
+                                <input type="text" class="form-control" id="brewery" placeholder="">
+
+
+                                <!-- <label for="brewery-search"> Search for a brewery: </label>
+                                <input id="brewery-search" name="brewerySearch" type="text"></input> -->
                                 <label for="transit-method">What is your preferred transit method?</label>
                                 <div class="radio">
                                     <label>
@@ -40,8 +46,8 @@
                                 </div>
                             </div>
                             <!-- close form group -->
-                            <input type="submit" class="btn" id="submitButton" value="Find Breweries!">
-                    </div>
+                            <!-- <input type="submit" class="btn" id="search-btn" value="Find Breweries!"> -->                      <button type="submit" class="btn btn-success btn-md" id="search-btn"><span class="glyphicon glyphicon-search" aria-hidden='true'></span>Search</button>
+
                 </div>
                 <!-- close searchForm -->
             </div>
@@ -63,10 +69,11 @@
         <div class="col-md-6 mx-auto" id="directions-panel" libraries="directions"></div>
     </div>
 </section>
-<script type="text/javascript" src="/js/gmaps.js" type="text/javascript"></script> 
+<script type="text/javascript" src="/js/gmaps.js" type="text/javascript"></script>
 <script type="text/javascript" src="/js/fblogin.js" type="text/javascript"></script>
 <script type="text/javascript" src="/js/untappd.js" type="text/javascript"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLqqQUio_x0z2rWW6YuuDN2Vx-LaAJYks&callback=initMap&libraries=places"
     type="text/javascript"></script>
 <script type="text/javascript" src="/js/app.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/untappd.js" type="text/javascript"></script>
