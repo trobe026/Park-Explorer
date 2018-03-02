@@ -237,7 +237,7 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
           summaryPanel.innerHTML += '<h3>' + destinationList[0].name  +
           '</h3><br>';
         } else {
-          summaryPanel.innerHTML += '<h3>' + waypts[(response.routes[0].waypoint_order[(i - 1)])].location  +
+          summaryPanel.innerHTML += '<h3>to ' + waypts[(response.routes[0].waypoint_order[(i - 1)])].location  +
           '</h3><br>';
         }
           
@@ -245,7 +245,7 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
           '</b><br>';
         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+        summaryPanel.innerHTML += route.legs[i].distance.text + ', ' + route.legs[i].duration.text + '<br><br>';
       };
     } else {
       console.log('Directions request failed due to ' + status);
