@@ -19,7 +19,6 @@
     "password": "q60r5piy6t0a1s5v",
     "database": "zi1gqvy2q65o6ecs",
     "host": "icopoghru9oezxh8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    "dialect": "mysql",
-    "use_env_variable": "DB_CONNECTION_STRING"
+    "dialect": "mysql"
   }
 }
