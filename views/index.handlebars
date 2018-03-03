@@ -1,13 +1,13 @@
 <div id="logout" class="pull-right">
     <div id="status"></div>
 </div>
-
 <section class="frontPage bg-primary text-center" id="frontPage">
     <div class="container">
         {{!-- <button type="button" id="beerButton" class="btn pull-left" name="button">Beer Search</button> --}}
-        <a href="/untappd"><button type="submit" class="btn btn-success btn-md pull-left" ><span class="glyphicon glyphicon-search" aria-hidden='true'></span>Bear Search</button></a>
-
+        <div class="row">
+        <a href="/untappd"><button type="submit" class="btn btn-success btn-md pull-left" ><span class="glyphicon glyphicon-search" aria-hidden='true'></span>Beer Search</button></a>
         <a href="/favorites"><button type="submit" class="btn btn-success btn-md pull-right" ><span class="glyphicon glyphicon-star" aria-hidden='true'></span>Favorites</button></a>
+        </div>
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2 class="section-heading">PUBlic</h2>
@@ -15,9 +15,7 @@
             </div>
         </div>
         <div class="row text-center">
-
-            <div class="col-xs-4">
-
+            <div class="col-xs-4">  
                 <div id="login"></div>
             </div>
         </div>
@@ -32,7 +30,7 @@
                         <form action="" role='form'>
                             <div class="form-group">
 
-                                <label id="brewerySearchTitle" for="">Brewery Search:</label>
+                                <label id="brewerySearchTitle" for="">Brewery Name:</label>
                                 <input type="text" class="form-control" id="brewery" placeholder="">
 
 
