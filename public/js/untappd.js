@@ -87,8 +87,7 @@ $('#search-btn').on('click', function () {
       // Instantiate an info window to hold step text.
       var stepDisplay = new google.maps.InfoWindow;
       fetchLocalBreweries(position);
-      calculateAndDisplayRoute(directionsDisplay, directionsService,
-        markerArray, stepDisplay, map);
+      calculateAndDisplayRoute(directionsDisplay, directionsService, stepDisplay, map);
     }
   })
 });
