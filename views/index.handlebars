@@ -1,11 +1,15 @@
-<div id="logout" class="pull-right"></div>
+<div id="logout" class="pull-right">
+    <div id="status"></div>
+</div>
 
 <section class="frontPage bg-primary text-center" id="frontPage">
     <div class="container">
-        <div id="status"></div>
+        {{!-- <button type="button" id="beerButton" class="btn pull-left" name="button">Beer Search</button> --}}
+        <a href="/untappd"><button type="submit" class="btn btn-success btn-md pull-left" ><span class="glyphicon glyphicon-search" aria-hidden='true'></span>Bear Search</button></a>
+
+        <a href="/favorites"><button type="submit" class="btn btn-success btn-md pull-right" ><span class="glyphicon glyphicon-star" aria-hidden='true'></span>Favorites</button></a>
         <div class="row">
             <div class="col-md-8 mx-auto">
-
                 <h2 class="section-heading">PUBlic</h2>
                 <h3 class="section-heading">Enjoy local brews and breweries, safely!</h3>
             </div>
@@ -22,14 +26,13 @@
 
                 <div id="controlPanel">
                     <a href="/untappd">
-                        <button type="button" id="beerButton" class="btn" name="button">Over 21? Pick your favorite beers!</button>
                     </a>
                     <div id="beer">
                     </div>
                         <form action="" role='form'>
                             <div class="form-group">
 
-                                <label for="">Brewery Name:</label>
+                                <label id="brewerySearchTitle" for="">Brewery Search:</label>
                                 <input type="text" class="form-control" id="brewery" placeholder="">
 
 

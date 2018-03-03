@@ -4,33 +4,27 @@ body {
   height: 100%;
   text-align: center;
 }
-
 body {
-  font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; }
-
+  font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; 
+}
 a {
   color: black;
   -webkit-transition: all .35s;
   -moz-transition: all .35s;
   transition: all .35s; }
-
-  a:hover, a:focus {
+a:hover, a:focus {
     color: #fcbd20; }
-
-h2, h3,
-h6 {
+h2, h3, h6 {
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
   font-weight: 200;
-  letter-spacing: 1px; }
-
+  letter-spacing: 1px; 
+}
 h2, h3 {
   color: #7b4397;
 }
-
 table {
   color: black;
 }
-
 #map{
   margin:5px;
   height: 100vh;
@@ -50,7 +44,12 @@ table {
   max-height: 100%;
   max-width: 100%;
 }
-
+#brewerySearchTitle{
+  font-size: 28px;
+}
+.radio{
+  font-size: 16px;
+}
 #images{
   display: none;
   overflow: scroll;
@@ -74,9 +73,10 @@ table {
   font-size: 18px;
 }
 #iw-content{
-
   font-size: 18px;
-
+}
+#status{
+  margin:10px;
 }
 .section-heading{
   font-family: 'Bowlby One SC', cursive;
