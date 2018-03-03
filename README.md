@@ -1,3 +1,6 @@
-Park Explorer is an application that allows you too see the most up-to-date images of the national parks that make our country great. Now you can see in real time, from pictures taken by your fellow explorers, how amazing our National Parks are. 
+# PUBlic
+**PUBlic** is an application for beer connoisseurs. It allows users to sign in with Facebook, and reveals breweries in their current area.  Users can plan routes, and get detailed information on breweries of their choice by using the search feature.  Performing a search will override the map markers showing nearby breweries, and instead show map markers generated from their search.  
 
-The motivation for creating this application was to provide an easy-to-use interface for people to discover where they want to visit. It is often difficult to truly explore these days with the over-saturation of information. On Park Explorer, there are o descriptions, no opinions, just photos. Photos to help you discover your adventure. 
+Users can also explore beers on the **_beer search_** page.  This page allows you to search for beer names and displays relevant data for that beer.  Each result can be favorited, which saves it to their beers' database. They can then visit the favorites page to view data on all their favorites beers and keep track of which ones they want to try next!
+
+This app is useful for anyone wanting to explorer beers or breweries available in certain areas, find out about other beers made by their favorite brewery, or just get some interesting info on their favorite beers.
