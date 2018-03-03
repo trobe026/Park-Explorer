@@ -1,7 +1,7 @@
 <section class="frontPage bg-primary text-center" id="frontPage">
     <div class="container">
         
-            <a id="home-page" href="/"><button type="submit" class="btn btn-md pull-left" ><span class="glyphicon glyphicon-home" aria-hidden='true'></span>Home Page</button></a>
+            <a id="home-page" href="/"><button type="submit" class="btn btn-md pull-left" ><span class="glyphicon glyphicon-home" aria-hidden='true'></span>Home</button></a>
             <a id="untappd-page" href="/untappd"><button type="submit" class="btn btn-md pull-right" ><span class="glyphicon glyphicon-search" aria-hidden='true'></span>Find More Beers</button></a>
         
         <div id="status"></div>
@@ -12,9 +12,14 @@
                 <h3 class="section-heading">Enjoy local brews and breweries, safely!</h3>
             </div>
         </div>
+        <div class="container">
             <div class="row">
-            <div class="col-xs-12">
-                <table class='table' id="searchResults"></table>
+                <div class="col-xs-12">
+                    <table class='table table-hover sticky-header'>
+                        <thead id="tableHead"></thead>
+                        <tbody id="searchResults"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

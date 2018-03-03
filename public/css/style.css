@@ -80,15 +80,16 @@ table {
 }
 
 section.frontPage {
-  padding: 125px; }
+  padding: 125px 125px 50px 125px;
+ }
 section.frontPage h2 {
     font-size: 50px;
-    margin-top: 0; }
+    margin-top: 0; 
+  }
 @media (min-width: 768px) {
-    section.frontPage h2 {
-      font-size: 70px; } }
-
-
+  section.frontPage h2 {
+    font-size: 70px; } 
+}
 .btn {
   border-radius: 300px;
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
@@ -109,9 +110,7 @@ section.frontPage h2 {
     background-position-x: center;
     background-position-y: center;
   background-size: cover;
-  height: 100%;
  }
-
  select{
   background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
   background: linear-gradient(to left, #7b4397, #dc2430);
@@ -245,6 +244,20 @@ label {
   color: white;
 }
 
+tbody {
+  display:block;
+  height:250px;
+  overflow-y:auto;
+  overflow-x: auto;
+}
+thead, tbody tr {
+  display:table;
+  width:100%;
+  table-layout:fixed;
+}
+thead {
+  width: calc( 100% - 1em )
+} 
 
 @media only screen and (max-width: 895px) {
     #images {
