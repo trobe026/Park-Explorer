@@ -78,7 +78,7 @@ $('#search-btn').on('click', function () {
         zoom: 14
       });
       pos = position;
-      map.setCenter(position);
+      map.setCenter(pos);
       service = new google.maps.places.PlacesService(map);
       var directionsService = new google.maps.DirectionsService();
       var directionsDisplay = new google.maps.DirectionsRenderer();
