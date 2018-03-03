@@ -78,7 +78,9 @@ table {
   font-size: 18px;
 
 }
-
+.section-heading{
+  font-family: 'Bowlby One SC', cursive;
+}
 section.frontPage {
   padding: 125px 125px 50px 125px;
  }
