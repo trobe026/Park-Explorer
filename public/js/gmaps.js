@@ -3,7 +3,6 @@ var map;
 var service;
 var infowindow;
 var destinationList = [];
-var waypts = [];
 var travelModeSelection = "BICYCLING";
 
 $(window).resize(function () {
@@ -11,6 +10,7 @@ $(window).resize(function () {
 });
 
 function fetchLocalBreweries(pos) {
+
   // find breweries near the user or latlng of the brewery we searched
   var settings;
   service = new google.maps.places.PlacesService(map);
@@ -136,6 +136,7 @@ function fetchLocalBreweries(pos) {
 
 
 function initMap() {
+
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 30.307182, lng: -97.755996 },
     zoom: 14
@@ -196,8 +197,8 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService, stepDisp
   // Retrieve the start and end locations and create a DirectionsRequest using
   // BICYCLING directions.
   directionsService.route({
-    origin: waypts[0].location,
-    destination: waypts[0].location,
+    origin: destinationList[0].name,
+    destination: destinationList[0].name,
     waypoints: waypts,
     travelMode: travelModeSelection,
   }, function (response, status) {
@@ -239,11 +240,14 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService, stepDisp
         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
         summaryPanel.innerHTML += route.legs[i].distance.text + ', ' + route.legs[i].duration.text + '<br><br>';
+        destinationList = [];
       };
     } else {
       console.log('Directions request failed due to ' + status);
     }
+
   });
+  //
 }
 function attachInstructionText(stepDisplay, marker, text, map) {
   google.maps.event.addListener(marker, 'click', function () {

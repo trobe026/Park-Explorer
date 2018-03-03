@@ -2,6 +2,7 @@ var position;
 var destinationList;
 
 $('#search-btn').on('click', function () {
+  // destinationList = [];
   event.preventDefault();
   $('#searchResults').empty();
 
@@ -89,5 +90,7 @@ $('#search-btn').on('click', function () {
       fetchLocalBreweries(position);
       calculateAndDisplayRoute(directionsDisplay, directionsService, stepDisplay, map);
     }
+
   })
+
 });
