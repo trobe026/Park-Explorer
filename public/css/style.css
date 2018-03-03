@@ -78,6 +78,10 @@ table {
 #status{
   margin:10px;
 }
+#mapdiv{
+  border: solid;
+  border-color: #7b4397;
+}
 .section-heading{
   font-family: 'Bowlby One SC', cursive;
 }
