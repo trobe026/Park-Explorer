@@ -3,10 +3,11 @@ var bodyParser = require("body-parser");
 var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 8080;
-
+var favicon = require('serve-favicon')
 var db = require("./models");
 
 app.use(express.static("public"));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
