@@ -10,7 +10,7 @@ $(window).resize(function () {
 });
 
 function fetchLocalBreweries(pos) {
-
+  destinationList = [];
   // find breweries near the user or latlng of the brewery we searched
   var settings;
   service = new google.maps.places.PlacesService(map);
@@ -38,8 +38,9 @@ function fetchLocalBreweries(pos) {
       console.log('got em');
       for (var i = 0; i < results.length && i < 4; i++) {
         var place = {
-          name: results[i].vicinity,
-          place_id: results[i].place_id
+          name: results[i].name,
+          place_id: results[i].place_id,
+          vicinity: results[i].vicinity
         }
         if (results[i].permanently_closed == true) {
           return;
@@ -74,8 +75,9 @@ function fetchLocalBreweries(pos) {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length && destinationList.length < 5; i++) {
               var place = {
-                name: results[i].vicinity,
-                place_id: results[i].place_id
+                name: results[i].name,
+                place_id: results[i].place_id,
+                vicinity: results[i].vicinity
               };
               if (results[i].permanently_closed == true) {
                 return;
@@ -114,8 +116,9 @@ function fetchLocalBreweries(pos) {
           for (var i = 0; i < results.length
             && destinationList.length < 5; i++) {
             var place = {
-              name: results[i].vicinity,
-              place_id: results[i].place_id
+              name: results[i].name,
+              place_id: results[i].place_id,
+              vicinity: results[i].vicinity
             };
             if (results[i].permanently_closed == true) {
               return;
@@ -187,7 +190,7 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService, stepDisp
   var waypts = [];
   for (var i = 0; i < destinationList.length; i++) {
     waypts.push({
-      location: destinationList[i].name,
+      location: destinationList[i].vicinity,
       stopover: true
     });
   }
@@ -197,8 +200,8 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService, stepDisp
   // Retrieve the start and end locations and create a DirectionsRequest using
   // BICYCLING directions.
   directionsService.route({
-    origin: destinationList[0].name,
-    destination: destinationList[0].name,
+    origin: destinationList[0].vicinity,
+    destination: destinationList[0].vicinity,
     waypoints: waypts,
     travelMode: travelModeSelection,
   }, function (response, status) {
@@ -231,7 +234,8 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService, stepDisp
           summaryPanel.innerHTML += '<h3>' + destinationList[0].name +
             '</h3><br>';
         } else {
-          summaryPanel.innerHTML += '<h3>to ' + waypts[(response.routes[0].waypoint_order[(i - 1)])].location +
+          console.log(destinationList);
+          summaryPanel.innerHTML += '<h3>to ' + destinationList[(response.routes[0].waypoint_order[(i - 1)])].name +
             '</h3><br>';
         }
 
@@ -240,7 +244,6 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService, stepDisp
         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
         summaryPanel.innerHTML += route.legs[i].distance.text + ', ' + route.legs[i].duration.text + '<br><br>';
-        destinationList = [];
       };
     } else {
       console.log('Directions request failed due to ' + status);
